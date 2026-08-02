@@ -214,16 +214,26 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 .hero__inner {
   max-width: var(--container); margin-inline: auto;
   padding: var(--sp-16) var(--sp-7) var(--sp-12);
+  display: grid; grid-template-columns: 1.22fr .78fr; gap: var(--sp-12);
+  align-items: center;
 }
-.hero__logo { height: 56px; width: auto; margin: 0 0 var(--sp-7); }
+.hero__logo { height: auto; width: 120px; margin: 0 0 var(--sp-6); }
 .hero__tag {
   font-size: var(--fs-2xs); font-weight: var(--fw-medium); letter-spacing: var(--ls-eyebrow);
-  color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--sp-6);
+  color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--sp-5);
 }
-.hero h1 { font-size: var(--fs-hero); max-width: 860px; text-wrap: balance; }
-.hero__lead { margin-top: var(--sp-6); max-width: var(--measure); font-size: var(--fs-lead); color: var(--text-body); text-wrap: pretty; }
-.hero .btn-row { margin-top: var(--sp-8); }
+/* hero 2 คอลัมน์ทำให้ฝั่งซ้ายแคบลง หัวข้อจึงเล็กกว่า --fs-hero เล็กน้อยเพื่อให้จบใน 2 บรรทัด */
+.hero h1 { font-size: 42px; text-wrap: balance; }
+.hero__lead { margin-top: var(--sp-5); max-width: var(--measure); font-size: var(--fs-lead); color: var(--text-body); text-wrap: pretty; }
+.hero .btn-row { margin-top: var(--sp-7); }
 .hero__streak { display: none; }   /* เส้นทองเฉียงเป็นของธีมมืด — ไม่ใช้แล้ว */
+
+/* แถบตัวเลขผลลัพธ์ด้านขวา — ตอบคำถาม "เจ้านี้ทำได้จริงไหม" ตั้งแต่หน้าจอแรก */
+.hero__proof { min-width: 260px; }
+.hero__proof .label { display: block; margin-bottom: var(--sp-4); }
+.proof { padding: var(--sp-5) 0; border-top: 1px solid var(--border-hairline); }
+.proof:first-of-type { border-top: 2px solid var(--sw-ink); }
+.proof__caption { margin-top: var(--sp-3); font-size: var(--fs-xs); color: var(--text-muted); }
 
 /* ---------- Clients ------------------------------------------------------ */
 .clients {
@@ -361,6 +371,7 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 @media (max-width: 980px) {
   .site-footer__cols { grid-template-columns: 1fr 1fr; }
   .vm-grid, .about-grid, .contact-grid, .case, .profile { grid-template-columns: 1fr; gap: var(--sp-8); }
+  .hero__inner { grid-template-columns: 1fr; gap: var(--sp-10); }
   .grid--2lg { grid-template-columns: 1fr; }
   .profile__photo img { max-width: 320px; }
 }
@@ -385,9 +396,9 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 @media (max-width: 620px) {
   :root { --fs-hero: 34px; --fs-h1: 30px; --fs-h2: 26px; --fs-lead: 17px; }
   .section { padding-block: var(--sp-12); }
-  .hero__inner { padding: var(--sp-10) var(--sp-6) var(--sp-8); }
-  .hero h1 { max-width: none; }
-  .hero__logo { height: 44px; }
+  .hero__inner { padding: var(--sp-10) var(--sp-6) var(--sp-8); gap: var(--sp-8); }
+  .hero__logo { width: 84px; }
+  .proof .stat { font-size: 34px; }
   .container { padding-inline: var(--sp-6); }
   .form__row { grid-template-columns: 1fr; }
   .btn { width: 100%; }
