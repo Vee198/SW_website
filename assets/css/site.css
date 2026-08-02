@@ -228,15 +228,14 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 /* ---------- Clients ------------------------------------------------------ */
 .clients {
   display: flex; gap: var(--sp-12); justify-content: flex-start;
-  flex-wrap: wrap; margin-top: var(--sp-6);
+  flex-wrap: wrap; margin-top: var(--sp-7); align-items: flex-start;
 }
-.client { display: grid; gap: var(--sp-3); justify-items: start; }
+.client { display: grid; gap: var(--sp-4); justify-items: start; }
+/* โลโก้ลูกค้าแสดงสีเต็ม — เป็นหลักฐานความน่าเชื่อถือ ไม่ควรทำให้จาง */
 .client img {
-  width: 150px; height: 60px; object-fit: contain; object-position: left center;
-  filter: grayscale(1); opacity: .72; transition: filter .2s ease, opacity .2s ease;
+  width: 210px; height: 92px; object-fit: contain; object-position: left center;
 }
-.client:hover img { filter: grayscale(0); opacity: 1; }
-.client__name { font-size: var(--fs-xs); color: var(--text-muted); }
+.client__name { font-size: var(--fs-xs); color: var(--text-muted); max-width: 210px; }
 
 /* ---------- Process / steps --------------------------------------------- */
 .step__num {
@@ -275,7 +274,7 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   display: grid; grid-template-columns: 300px 1fr; gap: var(--sp-12); padding-top: var(--sp-8);
 }
 .profile__photo { min-height: 0; }
-.profile__photo img { width: 100%; height: auto; filter: grayscale(1); }
+.profile__photo img { width: 100%; height: auto; }
 .profile__body { padding: 0; }
 .profile__body h3 { font-size: 28px; font-weight: var(--fw-regular); }
 .profile__role { margin-top: var(--sp-2); font-size: var(--fs-2xs); letter-spacing: var(--ls-label); color: var(--text-muted); text-transform: uppercase; }
@@ -380,6 +379,7 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   .btn { white-space: normal; }
   .header-actions { order: 2; }
   .clients { gap: var(--sp-8); }
+  .client img { width: 180px; height: 80px; }
 }
 
 @media (max-width: 620px) {
