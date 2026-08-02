@@ -10,7 +10,7 @@
 หมายเหตุ: นี่ไม่ใช่ build step ของการแก้เนื้อหา — แก้ .html แล้วเปิดดูได้เลยเหมือนเดิม
 สคริปต์นี้ใช้เฉพาะตอนจะ deploy เท่านั้น
 """
-import os, shutil, sys, io
+import os, shutil, sys, io, hashlib, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
@@ -47,6 +47,31 @@ def main():
         if os.path.isdir(src):
             shutil.copytree(src, os.path.join(DIST, d))
             n += sum(len(files) for _, _, files in os.walk(src))
+
+    # ---- ติดหมายเลขเวอร์ชันให้ CSS/JS (cache busting) --------------------
+    # ปัญหาที่เคยเจอ: _headers ตั้งแคช assets ไว้ 1 ปีแบบ immutable
+    # พอแก้ดีไซน์แล้ว deploy เบราว์เซอร์ยังใช้ CSS เก่าอยู่ เพราะชื่อไฟล์เหมือนเดิม
+    # ทางแก้: ต่อท้าย URL ด้วยแฮชของเนื้อไฟล์ → เนื้อเปลี่ยน URL เปลี่ยน เบราว์เซอร์โหลดใหม่ทันที
+    # (แก้เฉพาะสำเนาใน dist/ ไฟล์ต้นทางยังสะอาด เปิดดูบนเครื่องได้เหมือนเดิม)
+    assets = ["assets/css/tokens.css", "assets/css/site.css", "assets/js/site.js"]
+    version = {}
+    for a in assets:
+        f = os.path.join(DIST, a)
+        if os.path.exists(f):
+            with open(f, "rb") as fh:
+                version[a] = hashlib.md5(fh.read()).hexdigest()[:8]
+
+    for page in PAGES:
+        f = os.path.join(DIST, page)
+        if not os.path.exists(f):
+            continue
+        with io.open(f, encoding="utf-8") as fh:
+            html = fh.read()
+        for a, v in version.items():
+            html = html.replace('"%s"' % a, '"%s?v=%s"' % (a, v))
+        with io.open(f, "w", encoding="utf-8") as fh:
+            fh.write(html)
+    print("ติดเวอร์ชันให้ไฟล์: " + ", ".join("%s=%s" % (a.split("/")[-1], v) for a, v in version.items()))
 
     size = sum(os.path.getsize(os.path.join(dp, f))
                for dp, _, fs in os.walk(DIST) for f in fs)

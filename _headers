@@ -1,14 +1,22 @@
-# Cloudflare Pages — HTTP headers
-# ไฟล์นี้ทำงานเฉพาะบน Cloudflare Pages (วางไว้ที่ราก build output)
+# Cloudflare — HTTP headers
+# ไฟล์นี้ถูกคัดลงโฟลเดอร์ dist/ ตอน deploy
 
+# ค่าเริ่มต้นของทุก path: ความปลอดภัย + ห้ามแคชหน้าเว็บ
+# (หน้าเว็บของเราเป็น URL แบบไม่มี .html เช่น /services จึงต้องตั้งที่ /* ไม่ใช่ /*.html)
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Cache-Control: public, max-age=0, must-revalidate
 
-/assets/*
+# รูปภาพ: ชื่อไฟล์ไม่ซ้ำอยู่แล้ว แคชยาวได้เลย
+/assets/img/*
   Cache-Control: public, max-age=31536000, immutable
 
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate
+# CSS/JS: tools/publish.py ต่อท้าย URL ด้วย ?v=<แฮชของเนื้อไฟล์>
+# เนื้อไฟล์เปลี่ยนเมื่อไหร่ URL เปลี่ยนตาม จึงแคชยาวได้อย่างปลอดภัย
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
