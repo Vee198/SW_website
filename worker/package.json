@@ -1,0 +1,17 @@
+{
+  "name": "sw-contact-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker รับฟอร์มติดต่อของเว็บไซต์ SW Strategic Solutions Group",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute acc_db --remote --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute acc_db --local --file=./schema.sql",
+    "db:list": "wrangler d1 execute acc_db --remote --command \"SELECT created_at,name,company,email,phone,topic FROM sw_contact_submissions ORDER BY created_at DESC LIMIT 20\"",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

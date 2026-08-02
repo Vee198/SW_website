@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+node_modules/
+*.log
+.wrangler/
+
+# โฟลเดอร์ที่สร้างอัตโนมัติตอน deploy (ไม่ต้อง commit)
+dist/

@@ -1,0 +1,3 @@
+# คัดลอกไฟล์นี้เป็น .dev.vars สำหรับทดสอบบนเครื่อง (ไฟล์ .dev.vars จะไม่ถูก commit)
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
+EXPORT_TOKEN=สุ่มรหัสยาว ๆ มาใส่เอง

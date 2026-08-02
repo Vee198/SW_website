@@ -1,0 +1,35 @@
+<svg viewBox="0 0 150 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8CD83"></stop>
+      <stop offset="0.5" stop-color="#C8A24A"></stop>
+      <stop offset="1" stop-color="#9A7522"></stop>
+    </linearGradient>
+    <filter id="goldGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.4" result="b"></feGaussianBlur>
+      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+  <g stroke="url(#goldStroke)" fill="none" stroke-linecap="round" opacity="0.92">
+    <path d="M0,0 C 28,24 44,52 54,88" stroke-width="9"></path>
+    <path d="M54,88 C 62,116 58,150 76,182" stroke-width="6.5"></path>
+    <path d="M76,182 C 90,210 88,232 104,252" stroke-width="4.5"></path>
+    <path d="M38,50 C 66,54 92,44 116,26" stroke-width="5.5"></path>
+    <path d="M116,26 C 130,18 140,22 152,12" stroke-width="3"></path>
+    <path d="M101,36 C 112,46 116,60 121,74" stroke-width="2.6"></path>
+    <path d="M56,93 C 84,96 108,112 130,128" stroke-width="4.2"></path>
+    <path d="M130,128 C 140,136 142,150 148,162" stroke-width="2.6"></path>
+    <path d="M76,182 C 100,182 120,196 140,216" stroke-width="3.6"></path>
+  </g>
+  <g fill="#D9B45E" opacity="0.85">
+    <path d="M152,12 l-10,-4 l4,10 z"></path>
+    <path d="M121,74 l9,4 l-4,-10 z"></path>
+    <path d="M148,162 l10,3 l-3,-10 z"></path>
+    <path d="M140,216 l10,2 l-3,-10 z"></path>
+  </g>
+  <g fill="#F2DB8E" filter="url(#goldGlow)">
+    <circle cx="152" cy="12" r="4"></circle><circle cx="121" cy="74" r="3"></circle>
+    <circle cx="148" cy="162" r="3.5"></circle><circle cx="140" cy="216" r="3"></circle>
+    <circle cx="104" cy="252" r="4.5"></circle><circle cx="3" cy="3" r="5"></circle>
+  </g>
+</svg>

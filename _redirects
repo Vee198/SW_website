@@ -1,0 +1,8 @@
+# Cloudflare Pages — URL สวย ๆ (ไม่ต้องมี .html)
+/services      /services.html      301
+/about         /about.html         301
+/vision        /vision.html        301
+/cases         /case-studies.html  301
+/case-studies  /case-studies.html  301
+/contact       /contact.html       301
+/privacy       /privacy.html       301

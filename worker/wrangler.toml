@@ -1,0 +1,45 @@
+# SW Strategic Solutions Group — เว็บไซต์ + ตัวรับฟอร์ม (Worker เดียว)
+#
+# Worker ตัวนี้เสิร์ฟทั้งหน้าเว็บและ API ที่ URL เดียวกัน
+#   https://sw-contact.veerachai-mitmorn.workers.dev/           → หน้าแรกของเว็บ
+#   https://sw-contact.veerachai-mitmorn.workers.dev/api/contact → รับฟอร์ม
+#
+# deploy ด้วย:  .\deploy.ps1  ที่รากโปรเจกต์ (จะสร้าง dist/ ให้ก่อนอัตโนมัติ)
+# ห้ามรัน wrangler deploy ตรง ๆ โดยไม่สร้าง dist/ ก่อน ไม่งั้นเว็บจะว่างเปล่า
+
+name = "sw-contact"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# ---- ฐานข้อมูล D1 ---------------------------------------------------------
+# ใช้ฐานข้อมูล acc_db ร่วมกับโปรเจกต์อื่น (แผนฟรีจำกัด 10 ฐานข้อมูลต่อบัญชี)
+# ตารางของเว็บนี้ชื่อ sw_contact_submissions — ขึ้นต้นด้วย sw_ เพื่อไม่ชนกับตารางอื่นใน acc_db
+[[d1_databases]]
+binding = "DB"
+database_name = "acc_db"
+database_id = "086d501b-4eb8-422e-8483-52a0385adb5c"
+
+# ---- ไฟล์เว็บไซต์ (static assets) ------------------------------------------
+# Worker ตัวนี้ทำสองหน้าที่ในตัวเดียว:
+#   1. เสิร์ฟหน้าเว็บจากโฟลเดอร์ dist/  (สร้างด้วย python tools/publish.py)
+#   2. รับฟอร์มที่เส้นทาง /api/*
+# ลำดับการทำงาน: ถ้า path ตรงกับไฟล์ใน dist/ จะเสิร์ฟไฟล์นั้น ถ้าไม่ตรงจึงเข้าโค้ด Worker
+[assets]
+directory = "../dist"
+binding = "ASSETS"                 # ให้โค้ด Worker หยิบไฟล์จาก dist/ ได้ (ใช้ตอนทำหน้า 404)
+not_found_handling = "404-page"    # path ที่ไม่มีจริง → แสดง dist/404.html
+
+# ---- ค่าที่เปิดเผยได้ (ไม่ใช่ความลับ) -------------------------------------
+[vars]
+# โดเมนที่อนุญาตให้ยิงฟอร์มเข้ามา คั่นหลายอันด้วยจุลภาค
+# เว็บกับ Worker อยู่โดเมนเดียวกันแล้ว CORS จึงแทบไม่มีผล แต่คงไว้เผื่อเรียกจากที่อื่น
+# ตอนทดสอบบนเครื่อง localhost:8000 ก็อยู่ในลิสต์แล้ว
+ALLOWED_ORIGIN = "https://sw-contact.veerachai-mitmorn.workers.dev,https://www.swstrategicsol.com,https://swstrategicsol.com,http://localhost:8000"
+# อีเมลที่จะรับแจ้งเตือน (ใส่หลายคนได้ คั่นด้วยจุลภาค)
+MAIL_TO = "v.suwatvanich@swstrategicsol.com"
+# ผู้ส่ง — โดเมนนี้ต้องยืนยันใน Resend ก่อน
+MAIL_FROM = "SW Website <noreply@swstrategicsol.com>"
+
+# ---- ความลับ — อย่าใส่ในไฟล์นี้ ตั้งด้วยคำสั่งแทน ------------------------
+#   npx wrangler secret put RESEND_API_KEY
+#   npx wrangler secret put EXPORT_TOKEN
