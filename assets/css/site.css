@@ -252,6 +252,9 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 
 /* ---------- Gallery ------------------------------------------------------ */
 .shot { display: grid; gap: var(--sp-4); }
+/* ภาพเด่น — กินเต็มความกว้างของแกลเลอรี ใช้กับผลงานชิ้นที่อยากให้เห็นชัดที่สุด */
+.shot--wide { grid-column: 1 / -1; }
+.shot--wide .frame img { width: 100%; height: auto; }
 .shot__caption { font-size: var(--fs-xs); color: var(--text-muted); }
 
 /* ---------- Vision & Mission -------------------------------------------- */
