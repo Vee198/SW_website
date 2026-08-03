@@ -344,10 +344,28 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 | ชื่อบริษัท (อังกฤษ) | SW Strategic Solutions Group Co., Ltd. | ทุกหน้า (footer) |
 | โทรศัพท์ | 064-154-9955 (`tel:+66641549955`) | footer ทุกหน้า, about, contact |
 | LINE OA | `@160fupme` — ลิงก์ `https://line.me/R/ti/p/@160fupme` | ปุ่มลอยทุกหน้า, footer, contact, thank-you |
+| QR code LINE | `assets/img/line-qr.png` | หน้า contact — สร้างใหม่ด้วยสคริปต์ใน SKILL.md ถ้า LINE ID เปลี่ยน |
+| เลขทะเบียนนิติบุคคล | `0125569020330` | footer ทุกหน้า, about, privacy, JSON-LD |
 | อีเมล | v.suwatvanich@swstrategicsol.com | footer ทุกหน้า, about, contact |
 | ที่อยู่ | 90/14 หมู่บ้านเพอร์เฟคพาร์คบางใหญ่ 2 หมู่ 1 ซอย 2 ถนนทางหลวงชนบท (สายอุทิศ–วัดหลังบาง) ต.บ้านใหม่ อ.บางใหญ่ จ.นนทบุรี 11140 | about, contact, index (JSON-LD) |
 | เวลาทำการ | จันทร์–ศุกร์ 9:00–18:00 | contact |
 | กรรมการผู้จัดการ | วีระชัย สุวัจน์วณิช / Veerachai Suwatvanich | vision |
+
+---
+
+## 8.5 เลขทะเบียนนิติบุคคล
+
+**`0125569020330`** — ใส่ครบแล้ว 4 จุด ถ้าจะแก้ ต้องแก้ให้ครบทุกจุด
+
+| จุด | ตำแหน่ง |
+|---|---|
+| footer ทุกหน้า | ต่อท้าย `© 2026 SW Strategic Solutions Group Co., Ltd.` |
+| `about.html` | กล่อง `.factsheet` ระหว่างชื่อบริษัทกับสำนักงานใหญ่ |
+| `privacy.html` | หัวข้อ 7 ข้อมูลผู้ควบคุมข้อมูล (จำเป็นตาม PDPA) |
+| `index.html` | JSON-LD ฟิลด์ `taxID` และ `identifier` (ให้ Google รู้จักนิติบุคคล) |
+
+ทุกจุดต้องมีคู่ TH/EN (`เลขทะเบียนนิติบุคคล` / `Registration no.`)
+และใช้ `font-variant-numeric: tabular-nums` ให้ตัวเลขเรียงตรงกัน
 
 ---
 
@@ -356,11 +374,12 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 - [ ] **Worker ยังไม่ได้ deploy** — ต้องใส่ `database_id` ใน `worker/wrangler.toml` แล้วรัน `wrangler deploy`
 - [ ] **โดเมนจริง** — โค้ดสมมติไว้ว่า `swstrategicsol.com` และ API ที่ `api.swstrategicsol.com` ต้องยืนยัน
 - [ ] **Resend** — ต้อง verify โดเมนและตั้ง `RESEND_API_KEY` ก่อน ถึงจะมีอีเมลแจ้งเตือน
-- [ ] **เลขทะเบียนนิติบุคคล 13 หลัก** — ควรใส่ใน footer/privacy เพื่อความน่าเชื่อถือและครบตาม PDPA
-- [ ] **LINE Official Account** — ถ้ามี ควรเพิ่มปุ่มติดต่อ (คนไทยชอบทักไลน์มากกว่ากรอกฟอร์ม)
+- [x] ~~เลขทะเบียนนิติบุคคล~~ — เสร็จแล้ว `0125569020330` (ดู §8.5)
+- [x] ~~LINE Official Account~~ — เสร็จแล้ว `@160fupme` มีปุ่มลอยทุกหน้า + QR ในหน้า contact
 - [ ] **สิทธิ์ใช้โลโก้ลูกค้า** — Summit / ฟอร์ยู โฮมเดคคอร์ / ไทยซอสเทรดดิ้ง ได้ขออนุญาตแล้วหรือยัง
 - [ ] **ตัวเลขใน case studies** — ยืนยันว่าเปิดเผยต่อสาธารณะได้ ไม่ผิด NDA
-- [ ] **Google Analytics / Search Console** — ยังไม่ได้ติดตั้ง (ถ้าติดตั้ง ต้องอัปเดต privacy.html หัวข้อคุกกี้)
+- [x] ~~Google Search Console~~ — เสร็จแล้ว ส่ง sitemap 7 หน้าเรียบร้อย
+- [ ] **Analytics / pixel โฆษณา** — โครงพร้อมใน `assets/js/tracking.js` ยังไม่เปิดใช้ (ดู §6.5)
 - [ ] **ลบข้อมูลเกิน 24 เดือน** — ประกาศไว้ใน privacy.html แล้ว ต้องมีคนรันคำสั่งจริงปีละครั้ง (ดู `worker/schema.sql`)
 
 ### ข้อผูกพันตาม PDPA ที่ประกาศไว้ในเว็บแล้ว — ห้ามแก้โดยไม่ตรวจสอบระบบจริง

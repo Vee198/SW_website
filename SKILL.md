@@ -151,6 +151,50 @@ for n,c in [('หัวข้อ','#0E1A2B'),('เนื้อความ','#3D
 
 ---
 
+## สถานการณ์ที่ 6.5 — เปลี่ยน LINE ID / สร้าง QR code ใหม่
+
+LINE ID ปัจจุบันคือ `@160fupme` โผล่อยู่ **4 ที่** ต้องแก้ให้ครบทุกที่
+
+| ที่ | จุด |
+|---|---|
+| ทุกหน้า `.html` | ปุ่มลอย `.line-fab` |
+| ทุกหน้า `.html` | footer รายการติดต่อ |
+| `contact.html` | การ์ด LINE + รูป QR |
+| `thank-you.html` | ลิงก์ "ทักทาง LINE" |
+
+`tools/check.py` ข้อ 9 จะฟ้อง ERROR ถ้า ID ไม่ตรงกันระหว่างหน้า
+
+**สร้าง QR ใหม่** (ต้องทำทุกครั้งที่เปลี่ยน ID)
+
+```bash
+python3 -c "
+import qrcode
+from qrcode.constants import ERROR_CORRECT_M
+qr = qrcode.QRCode(error_correction=ERROR_CORRECT_M, box_size=14, border=2)
+qr.add_data('https://line.me/R/ti/p/@ไอดีใหม่')
+qr.make(fit=True)
+img = qr.make_image(fill_color='#0E1A2B', back_color='white').convert('RGB').resize((560,560))
+img.save('assets/img/line-qr.png')
+print('เสร็จ')"
+```
+
+ถ้ายังไม่มี `qrcode` ให้ `pip install qrcode --break-system-packages` ก่อน
+
+**ตรวจว่าสแกนได้จริงก่อน deploy เสมอ** — QR ที่สแกนไม่ออกแย่กว่าไม่มี QR
+
+```bash
+pip install pyzbar --break-system-packages && apt-get install -y libzbar0
+python3 -c "
+from PIL import Image
+from pyzbar.pyzbar import decode
+r = decode(Image.open('assets/img/line-qr.png'))
+print('อ่านได้:', r[0].data.decode() if r else 'สแกนไม่ได้')"
+```
+
+**ห้ามใช้สีอ่อนกับ QR** — ต้องคอนทราสต์สูง สีหมึก `#0E1A2B` บนขาวคือค่าที่ทดสอบแล้วว่าใช้ได้
+
+---
+
 ## สถานการณ์ที่ 7 — ฟอร์มติดต่อ (Worker + D1)
 
 ฟอร์มยิงเข้า Cloudflare Worker ของบริษัทเอง ไม่ใช่บริการภายนอก — ข้อมูลอยู่ใน D1 ของบัญชีคุณ

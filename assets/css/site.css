@@ -444,3 +444,9 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   .line-fab__label { display: none; }
 }
 @media print { .line-fab { display: none !important; } }
+
+/* ---------- การ์ด LINE ในหน้าติดต่อ (ข้อความ + QR) --------------------- */
+.line-card { display: flex; gap: var(--sp-6); align-items: flex-start; justify-content: space-between; }
+.line-qr { flex: 0 0 auto; display: block; border: 1px solid var(--border-hairline); padding: 6px; }
+.line-qr img { width: 104px; height: 104px; }
+@media (max-width: 620px) { .line-card { flex-direction: column; } }
