@@ -79,6 +79,21 @@
     // if (window.lintrk) lintrk('track', { conversion_id: XXXXXXX });
   }
 
+  /* ---------- 4.5) นับการกดปุ่ม LINE เป็น conversion ----------------------
+     คนไทยจำนวนมากเลือกทัก LINE แทนกรอกฟอร์ม ถ้าไม่นับตรงนี้
+     จะประเมินผลโฆษณาต่ำกว่าความจริงมาก                                      */
+  document.addEventListener('click', function (e) {
+    var el = e.target && e.target.closest ? e.target.closest('[data-line-cta]') : null;
+    if (!el) return;
+    dataLayer.push({ event: 'line_click', location: window.location.pathname });
+
+    // Meta — เอาคอมเมนต์ออกเมื่อเปิดใช้ Pixel
+    // if (window.fbq) fbq('trackCustom', 'LineClick');
+
+    // Google Ads — ใส่ค่าจริงจากหน้า Conversions
+    // if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXXXXXXXXX' });
+  }, true);
+
   /* ---------- 5) จุดต่อขยายสำหรับอนาคต -----------------------------------
      ส่วนอื่นของเว็บสามารถส่งสัญญาณเข้ามาได้ด้วย
        window.dispatchEvent(new CustomEvent('sw:track', { detail: { name: 'ชื่อ event' } }));

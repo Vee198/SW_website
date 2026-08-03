@@ -421,3 +421,26 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   .site-header, .site-footer, .btn { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* ---------- ปุ่ม LINE ลอยมุมขวาล่าง ------------------------------------
+   จงใจใช้สีเขียว LINE จริง (#06C755) แทนสีหมึกของธีม เพราะคนไทยจำสีนี้ได้ทันที
+   เป็นข้อยกเว้นเดียวของกติกา "สีน้อย" — เพื่อการใช้งาน ไม่ใช่เพื่อความสวย */
+.line-fab {
+  position: fixed; right: var(--sp-6); bottom: var(--sp-6); z-index: 60;
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  background: #06C755; color: #FFFFFF;
+  padding: 14px 20px; border-radius: var(--r-pill);
+  font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  box-shadow: 0 4px 16px rgba(0,0,0,.18);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.line-fab:hover { color: #FFFFFF; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,.24); }
+.line-fab svg { flex: none; }
+.line-fab__label { white-space: nowrap; }
+
+@media (max-width: 620px) {
+  /* บนมือถือเหลือแค่ไอคอนกลม ไม่บังเนื้อหา */
+  .line-fab { right: var(--sp-4); bottom: var(--sp-4); padding: 15px; }
+  .line-fab__label { display: none; }
+}
+@media print { .line-fab { display: none !important; } }

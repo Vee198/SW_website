@@ -130,6 +130,15 @@ try:
 except Exception:
     pass
 
+# 9) LINE ID ต้องตรงกันทุกหน้า และปุ่มลอยต้องมีครบ
+LINE_ID = "@160fupme"
+for p2, html in docs.items():
+    ids = set(re.findall(r'line\.me/R/ti/p/(@[A-Za-z0-9]+)', html))
+    if ids and ids != {LINE_ID}:
+        errors.append("%s → LINE ID ไม่ตรงกัน: %s (ควรเป็น %s)" % (p2, ", ".join(sorted(ids)), LINE_ID))
+    if 'class="line-fab"' not in html:
+        warnings.append("%s → ไม่มีปุ่ม LINE ลอย" % p2)
+
 # ---- สรุป ----
 for w in warnings:
     print("WARN  " + w)
