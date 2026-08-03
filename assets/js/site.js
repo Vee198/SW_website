@@ -110,12 +110,14 @@
         .then(function (r) { return r.json().then(function (b) { return { status: r.status, body: b }; }); })
         .then(function (out) {
           if (out.body && out.body.ok) {
-            form.classList.add('hidden');
-            if (successEl) {
-              successEl.classList.remove('hidden');
-              successEl.setAttribute('tabindex', '-1');
-              successEl.focus();
-            }
+            // ส่งสัญญาณให้ tracking.js รู้ (เผื่อกรณีเด้งหน้าไม่ทัน)
+            try {
+              window.dispatchEvent(new CustomEvent('sw:track', { detail: { name: 'lead_submitted' } }));
+            } catch (err) { /* เบราว์เซอร์เก่า: ข้ามไป ไม่กระทบการส่งฟอร์ม */ }
+
+            // เด้งไปหน้าขอบคุณ — จำเป็นสำหรับวัดผลโฆษณา เพราะระบบโฆษณา
+            // นับ conversion จาก URL ปลายทาง ไม่ใช่จากข้อความที่เปลี่ยนในหน้าเดิม
+            window.location.href = '/thank-you';
             return;
           }
           if (out.status === 429) say('ratelimit', 'error');

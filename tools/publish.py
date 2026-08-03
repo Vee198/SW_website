@@ -17,7 +17,8 @@ DIST = os.path.join(ROOT, "dist")
 
 # ไฟล์/โฟลเดอร์ที่ "เผยแพร่" ได้
 PAGES = ["index.html", "services.html", "about.html", "vision.html",
-         "case-studies.html", "contact.html", "privacy.html", "404.html"]
+         "case-studies.html", "contact.html", "privacy.html",
+         "thank-you.html", "404.html"]
 EXTRAS = ["robots.txt", "sitemap.xml", "_headers"]
 # หมายเหตุ: ไม่มี _redirects แล้ว — Cloudflare เสิร์ฟ URL แบบไม่มี .html ให้เองอยู่แล้ว
 #           ถ้าใส่ _redirects ที่แมป /services → /services.html จะเกิด redirect วนไม่รู้จบ
@@ -53,7 +54,8 @@ def main():
     # พอแก้ดีไซน์แล้ว deploy เบราว์เซอร์ยังใช้ CSS เก่าอยู่ เพราะชื่อไฟล์เหมือนเดิม
     # ทางแก้: ต่อท้าย URL ด้วยแฮชของเนื้อไฟล์ → เนื้อเปลี่ยน URL เปลี่ยน เบราว์เซอร์โหลดใหม่ทันที
     # (แก้เฉพาะสำเนาใน dist/ ไฟล์ต้นทางยังสะอาด เปิดดูบนเครื่องได้เหมือนเดิม)
-    assets = ["assets/css/tokens.css", "assets/css/site.css", "assets/js/site.js"]
+    assets = ["assets/css/tokens.css", "assets/css/site.css",
+              "assets/js/site.js", "assets/js/tracking.js"]
     version = {}
     for a in assets:
         f = os.path.join(DIST, a)

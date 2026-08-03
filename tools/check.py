@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """ตรวจสุขภาพเว็บก่อน deploy — รัน:  python tools/check.py
 
-เช็ค 7 อย่าง
+เช็ค 8 อย่าง
   1. ทุกหน้ามีไฟล์ครบและอ่านได้
   2. ลิงก์ภายใน (href="xxx.html") ชี้ไปยังไฟล์ที่มีอยู่จริง
   3. รูปทุกรูป (src="assets/img/...") มีไฟล์อยู่จริง + <img> มี alt
@@ -10,13 +10,15 @@
   5. ทุกข้อความ lang="th" มีคู่ lang="en" ในบล็อกเดียวกัน (นับจำนวนให้เท่ากัน)
   6. ฟอร์มติดต่อมี checkbox ยินยอม PDPA และลิงก์หน้านโยบาย
   7. ตั้ง endpoint ของ Worker และ database_id ของ D1 แล้ว
+  8. ถ้าเปิด pixel โฆษณา หน้านโยบายต้องไม่ประกาศว่าไม่ใช้คุกกี้ติดตาม
 ออก exit code 1 ถ้ามี ERROR — ใช้ต่อใน CI ได้
 """
 import os, re, sys, io
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "services.html", "about.html", "vision.html",
-         "case-studies.html", "contact.html", "privacy.html", "404.html"]
+         "case-studies.html", "contact.html", "privacy.html",
+         "thank-you.html", "404.html"]
 
 errors, warnings = [], []
 
@@ -62,6 +64,9 @@ for p, html in docs.items():
     for tag in re.findall(r"<img\b[^>]*>", html):
         if "alt=" not in tag:
             errors.append("%s → <img> ไม่มี alt: %s" % (p, tag[:70]))
+    for js in re.findall(r'src="(assets/js/[^"]+)"', html):
+        if not os.path.exists(os.path.join(ROOT, js)):
+            errors.append("%s → ไม่พบ JS: %s" % (p, js))
     for css in re.findall(r'href="(assets/css/[^"]+)"', html):
         if not os.path.exists(os.path.join(ROOT, css)):
             errors.append("%s → ไม่พบ CSS: %s" % (p, css))
@@ -109,6 +114,19 @@ try:
     wt = read("worker/wrangler.toml")
     if "PUT-YOUR-D1-DATABASE-ID-HERE" in wt:
         warnings.append("worker/wrangler.toml → ยังไม่ได้ใส่ database_id ของ D1")
+except Exception:
+    pass
+
+# 8) ถ้าเปิดใช้ pixel แล้ว privacy.html ต้องไม่ประกาศว่าไม่ใช้คุกกี้ติดตาม
+#    อ่านจากธง PIXELS_ENABLED ใน tracking.js (ชัดเจนกว่าการเดาจากคอมเมนต์)
+try:
+    trk = read("assets/js/tracking.js")
+    m = re.search(r"var PIXELS_ENABLED\s*=\s*(true|false)", trk)
+    if not m:
+        warnings.append("tracking.js → ไม่พบธง PIXELS_ENABLED")
+    elif m.group(1) == "true" and "ไม่ใช้คุกกี้เพื่อการติดตามหรือโฆษณา" in docs.get("privacy.html", ""):
+        errors.append("tracking.js เปิด pixel แล้ว (PIXELS_ENABLED = true) "
+                      "แต่ privacy.html ยังประกาศว่าไม่ใช้คุกกี้ติดตาม → ประกาศเท็จ ผิด PDPA")
 except Exception:
     pass
 
