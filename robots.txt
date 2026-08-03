@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.swstrategicsol.com/sitemap.xml
+Sitemap: https://swstrategicsol.com/sitemap.xml

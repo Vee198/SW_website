@@ -323,7 +323,7 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 ## 9. เรื่องที่ยังค้างอยู่ (ถามเจ้าของก่อนตัดสินใจ)
 
 - [ ] **Worker ยังไม่ได้ deploy** — ต้องใส่ `database_id` ใน `worker/wrangler.toml` แล้วรัน `wrangler deploy`
-- [ ] **โดเมนจริง** — โค้ดสมมติไว้ว่า `www.swstrategicsol.com` และ API ที่ `api.swstrategicsol.com` ต้องยืนยัน
+- [ ] **โดเมนจริง** — โค้ดสมมติไว้ว่า `swstrategicsol.com` และ API ที่ `api.swstrategicsol.com` ต้องยืนยัน
 - [ ] **Resend** — ต้อง verify โดเมนและตั้ง `RESEND_API_KEY` ก่อน ถึงจะมีอีเมลแจ้งเตือน
 - [ ] **เลขทะเบียนนิติบุคคล 13 หลัก** — ควรใส่ใน footer/privacy เพื่อความน่าเชื่อถือและครบตาม PDPA
 - [ ] **LINE Official Account** — ถ้ามี ควรเพิ่มปุ่มติดต่อ (คนไทยชอบทักไลน์มากกว่ากรอกฟอร์ม)

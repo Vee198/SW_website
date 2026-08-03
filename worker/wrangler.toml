@@ -34,11 +34,16 @@ not_found_handling = "404-page"    # path ที่ไม่มีจริง �
 # โดเมนที่อนุญาตให้ยิงฟอร์มเข้ามา คั่นหลายอันด้วยจุลภาค
 # เว็บกับ Worker อยู่โดเมนเดียวกันแล้ว CORS จึงแทบไม่มีผล แต่คงไว้เผื่อเรียกจากที่อื่น
 # ตอนทดสอบบนเครื่อง localhost:8000 ก็อยู่ในลิสต์แล้ว
-ALLOWED_ORIGIN = "https://sw-contact.veerachai-mitmorn.workers.dev,https://www.swstrategicsol.com,https://swstrategicsol.com,http://localhost:8000"
+ALLOWED_ORIGIN = "https://swstrategicsol.com,https://www.swstrategicsol.com,https://sw-contact.veerachai-mitmorn.workers.dev,http://localhost:8000"
 # อีเมลที่จะรับแจ้งเตือน (ใส่หลายคนได้ คั่นด้วยจุลภาค)
 MAIL_TO = "v.suwatvanich@swstrategicsol.com"
-# ผู้ส่ง — โดเมนนี้ต้องยืนยันใน Resend ก่อน
-MAIL_FROM = "SW Website <noreply@swstrategicsol.com>"
+# ผู้ส่ง — เริ่มต้นใช้โดเมนทดสอบของ Resend ได้เลย ไม่ต้องตั้ง DNS
+#   ข้อจำกัด: ส่งได้เฉพาะอีเมลที่ใช้สมัคร Resend เท่านั้น (ซึ่งพอสำหรับแจ้งเตือนทีมเรา)
+MAIL_FROM = "SW Website <onboarding@resend.dev>"
+#
+# เมื่อยืนยันโดเมน swstrategicsol.com ใน Resend เสร็จแล้ว ให้สลับมาใช้บรรทัดล่างนี้แทน
+# (ลบ # ข้างหน้าออก แล้วใส่ # ให้บรรทัดบน) จากนั้น deploy ใหม่
+# MAIL_FROM = "SW Website <noreply@swstrategicsol.com>"
 
 # ---- ความลับ — อย่าใส่ในไฟล์นี้ ตั้งด้วยคำสั่งแทน ------------------------
 #   npx wrangler secret put RESEND_API_KEY

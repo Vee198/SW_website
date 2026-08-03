@@ -72,7 +72,7 @@ URL ของ Worker ตอนนี้คือ `https://sw-contact.veerachai-m
 ตั้งไว้ในตัวแปร `SW_CONTACT_ENDPOINT` ของ `assets/js/site.js` ให้แล้ว
 
 ### 2. ยืนยันชื่อโดเมน
-โค้ดตั้งไว้ว่าเว็บคือ `www.swstrategicsol.com` และ API คือ `api.swstrategicsol.com`
+โค้ดตั้งไว้ว่าเว็บคือ `swstrategicsol.com` และ API คือ `api.swstrategicsol.com`
 ถ้าใช้ชื่ออื่น ต้องแก้ใน `robots.txt`, `sitemap.xml`, ทุกไฟล์ `.html`, `site.js` และ `worker/wrangler.toml`
 (บอก Claude ว่า "เปลี่ยนโดเมนเป็น xxx" แล้วมันจะไล่แก้ให้ครบเอง)
 
@@ -159,7 +159,7 @@ cd ..
 ### เปลี่ยนไปใช้โดเมนบริษัท
 
 Cloudflare Dashboard → **Workers & Pages → sw-contact → Settings → Domains & Routes**
-→ **Add → Custom domain** → ใส่ `www.swstrategicsol.com`
+→ **Add → Custom domain** → ใส่ `swstrategicsol.com`
 
 ไม่ต้องแก้โค้ดเลย เพราะฟอร์มเรียก `/api/contact` แบบ path สั้น ๆ ย้ายโดเมนก็ยังทำงาน
 (แต่ควรแก้ `SITE_URL` ในลิงก์ canonical และ `sitemap.xml` ให้ตรงโดเมนใหม่ — บอก Claude ได้)
