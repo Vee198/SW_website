@@ -6,3 +6,7 @@ node_modules/
 
 # โฟลเดอร์ที่สร้างอัตโนมัติตอน deploy (ไม่ต้อง commit)
 dist/
+
+# รูปที่แปลงไว้อัปโหลดขึ้น Google/LINE/Facebook — สร้างใหม่ได้เสมอด้วย
+# python tools/make_gbp_photos.py  จึงไม่ต้องเก็บใน git และไม่ต้องขึ้นเว็บ
+gbp-photos/
