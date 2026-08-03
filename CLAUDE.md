@@ -348,8 +348,7 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 | เลขทะเบียนนิติบุคคล | `0125569020330` | footer ทุกหน้า, about, privacy, JSON-LD |
 | อีเมล | v.suwatvanich@swstrategicsol.com | footer ทุกหน้า, about, contact |
 | ที่อยู่ | 90/14 หมู่บ้านเพอร์เฟคพาร์คบางใหญ่ 2 หมู่ 1 ซอย 2 ถนนทางหลวงชนบท (สายอุทิศ–วัดหลังบาง) ต.บ้านใหม่ อ.บางใหญ่ จ.นนทบุรี 11140 | about, contact, index (JSON-LD) |
-| เวลาทำการ | จันทร์–ศุกร์ 9:00–18:00 | contact |
-| ⚠️ ไม่ตรงกัน | Google Business Profile กรอกไว้ `08:00–20:00` — ต้องเลือกให้เหมือนกันทั้งสองที่ ดู §11 | — |
+| เวลาทำการ | จันทร์–ศุกร์ 8:00–20:00 | contact, thank-you, index (JSON-LD `openingHoursSpecification`), Google Business Profile |
 | กรรมการผู้จัดการ | วีระชัย สุวัจน์วณิช / Veerachai Suwatvanich | vision |
 
 ---
@@ -421,7 +420,7 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 | ชื่อ | บริษัท เอส ดับเบิลยู สแตรทีจิก โซลูชันส์ กรุ๊ป จำกัด |
 | หมวดหลัก | ที่ปรึกษา |
 | พื้นที่ให้บริการ | ประเทศไทย |
-| เวลาทำการ | 08:00–20:00 ← **ไม่ตรงกับ contact.html ที่เขียนว่า จันทร์–ศุกร์ 9:00–18:00** |
+| เวลาทำการ | 08:00–20:00 (จันทร์–ศุกร์) — ตรงกับเว็บและ JSON-LD แล้ว |
 | โทรศัพท์ | 064 154 9955 |
 | เว็บไซต์ | https://swstrategicsol.com/ |
 
