@@ -497,9 +497,9 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 
 | อุตสาหกรรม | ชื่อที่แสดง | URL |
 |---|---|---|
-| งานบริการภาคสนาม/ซ่อมบำรุง | SiamServe — CFO Command Center | `siamserve-cfo-dashboard.veerachai-mitmorn.workers.dev` |
-| อสังหาริมทรัพย์ | SIRA Estate — CFO Decision Dashboard | `re-cfo-dashboard.veerachai-mitmorn.workers.dev` |
-| เทรดดิ้ง/ผลิตเหล็ก | CFO Command Deck — Siam Steel | `cfo-command-deck.veerachai-mitmorn.workers.dev` |
+| งานบริการภาคสนาม/ซ่อมบำรุง | SiamServe — CFO Command Center | `demo-service.swstrategicsol.com` |
+| อสังหาริมทรัพย์ | SIRA Estate — CFO Decision Dashboard | `demo-property.swstrategicsol.com` |
+| เทรดดิ้ง/ผลิตเหล็ก | CFO Command Deck — Siam Steel | `demo-steel.swstrategicsol.com` |
 
 - เข้าใช้ด้วย **demo / demo** · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ · รองรับไทย/อังกฤษ/จีน
 - ลิงก์ปรากฏ **3 ที่**: `case-studies.html` (ส่วน Live Demos), `cfo-dashboard.html` (ในบทความ)
@@ -508,9 +508,22 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
   (`noopener` กันหน้าปลายทางเข้าถึง `window.opener` ของเว็บเราได้)
 - **ข้อความ "ข้อมูลสมมติ" ห้ามลบ** — ถ้าคนเข้าใจว่าเป็นตัวเลขลูกค้าจริงจะกลายเป็นปัญหาเรื่องความลับลูกค้า
 
-> **ข้อเสนอแนะ** — ตอนนี้ยังเป็นโดเมน `workers.dev` ซึ่งดูเป็นของทดลอง
-> ถ้าผูกเป็น `demo1.swstrategicsol.com` (Cloudflare → Workers → Custom Domains) จะดูน่าเชื่อถือกว่ามาก
-> และถ้าย้ายวันหลัง ต้องกลับมาแก้ URL ทั้ง 3 ที่ข้างบน
+**ผูกโดเมนยังไง (บันทึกไว้เพราะหน้าจอ Cloudflare หลอก)**
+หน้าจอ Worker → Domains → Connect domain จะขึ้นว่า `No zones match ...` ทั้งที่โดเมนอยู่ในบัญชีแล้ว
+**ห้ามกดปุ่ม "Onboard domain"** เพราะมันจะพยายามเพิ่ม subdomain เป็นโซนใหม่ ทำให้ DNS ของเว็บและอีเมลรวน
+วิธีที่ใช้ได้จริงคือทำจากฝั่งโดเมนแทน — เป็นวิธีเดียวกับตอนผูก `www`
+
+1. `swstrategicsol.com` → **DNS → Records → Add record**
+   Type `AAAA` · Name `demo-service` · IPv6 `100::` · **Proxied (เมฆส้ม)**
+2. โดเมนเดิม → **Workers Routes → Add route**
+   Route `demo-service.swstrategicsol.com/*` (ต้องมี `/*`) · Worker `siamserve-cfo-dashboard`
+
+`100::` คือที่อยู่ IPv6 สำหรับทิ้งทราฟฟิก ใส่ไว้ให้ Cloudflare ยอม proxy เท่านั้น
+Worker จะดักรับก่อนเสมอ ทราฟฟิกไปไม่ถึงปลายทางนั้นจริง
+ถ้าเมฆเป็นสีเทา Cloudflare จะไม่ proxy → Route ไม่ทำงาน
+
+URL เดิม `workers.dev` ยังเปิดได้อยู่ ถ้าอยากปิดให้เหลือเฉพาะโดเมนบริษัท
+ไปที่ Worker → Settings → Domains & Routes → workers.dev → Disable
 
 ---
 
