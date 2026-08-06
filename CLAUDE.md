@@ -489,6 +489,31 @@ python -m http.server 8000     # เปิด http://localhost:8000 ดูด้
 **รูปที่อัปโหลด** — Google ไม่รับ `.webp` ที่เว็บใช้ ต้องแปลงเป็น JPG ก่อน
 โลโก้ 720×720 · หน้าปก 1024×576 · รูปงาน กว้าง 1200 (สคริปต์แปลงอยู่ใน SKILL.md สถานการณ์ที่ 10)
 
+### 10.1.5 เดโม Dashboard ที่เว็บลิงก์ออกไป
+
+เว็บมีลิงก์ออกไปที่ Worker เดโม 3 ตัว **ซึ่งอยู่คนละ deployment กับเว็บนี้**
+ถ้าลบหรือเปลี่ยนชื่อ Worker เหล่านี้ เว็บบริษัทจะมีลิงก์เสียทันที และ `check.py` **ตรวจไม่เจอ**
+(มันตรวจเฉพาะลิงก์ภายใน) — ต้องเช็คด้วยมือปีละครั้งเป็นอย่างน้อย
+
+| อุตสาหกรรม | ชื่อที่แสดง | URL |
+|---|---|---|
+| งานบริการภาคสนาม/ซ่อมบำรุง | SiamServe — CFO Command Center | `siamserve-cfo-dashboard.veerachai-mitmorn.workers.dev` |
+| อสังหาริมทรัพย์ | SIRA Estate — CFO Decision Dashboard | `re-cfo-dashboard.veerachai-mitmorn.workers.dev` |
+| เทรดดิ้ง/ผลิตเหล็ก | CFO Command Deck — Siam Steel | `cfo-command-deck.veerachai-mitmorn.workers.dev` |
+
+- เข้าใช้ด้วย **demo / demo** · ข้อมูลทั้งหมดเป็นข้อมูลสมมติ · รองรับไทย/อังกฤษ/จีน
+- ลิงก์ปรากฏ **3 ที่**: `case-studies.html` (ส่วน Live Demos), `cfo-dashboard.html` (ในบทความ)
+  และปุ่มบนหน้าแรกที่ชี้ไป `/case-studies`
+- ลิงก์ออกภายนอกทุกอันต้องมี `target="_blank" rel="noopener"` เสมอ
+  (`noopener` กันหน้าปลายทางเข้าถึง `window.opener` ของเว็บเราได้)
+- **ข้อความ "ข้อมูลสมมติ" ห้ามลบ** — ถ้าคนเข้าใจว่าเป็นตัวเลขลูกค้าจริงจะกลายเป็นปัญหาเรื่องความลับลูกค้า
+
+> **ข้อเสนอแนะ** — ตอนนี้ยังเป็นโดเมน `workers.dev` ซึ่งดูเป็นของทดลอง
+> ถ้าผูกเป็น `demo1.swstrategicsol.com` (Cloudflare → Workers → Custom Domains) จะดูน่าเชื่อถือกว่ามาก
+> และถ้าย้ายวันหลัง ต้องกลับมาแก้ URL ทั้ง 3 ที่ข้างบน
+
+---
+
 ### 10.2 ลายเซ็นอีเมล (Zoho Mail)
 
 ตั้งที่ **Settings → Mail Accounts → เลือกอีเมล → Signature**
