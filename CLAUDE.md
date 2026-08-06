@@ -68,10 +68,11 @@ SW_Website/
 ├─ 404.html               ← หน้าไม่พบ (noindex)
 │
 ├─ insights.html          ← หน้ารวมบทความ
-├─ measurable-results.html          ┐
+├─ contribution-margin.html         ┐
+├─ measurable-results.html          │
 ├─ data-quality.html                │
 ├─ report-purpose.html              │
-├─ cfo-dashboard.html               ├─ บทความ 8 หน้า (ดู §6.7)
+├─ cfo-dashboard.html               ├─ บทความ 9 หน้า (ดู §6.7)
 ├─ profit-vs-cash.html              │   ชื่อไฟล์ = slug = URL
 ├─ vertical-horizontal-analysis.html│
 ├─ inventory-dashboard.html         │
@@ -276,6 +277,7 @@ Worker "sw-contact" ตัวเดียว ทำ 2 อย่าง
 
 | ไฟล์ | URL | คีย์เวิร์ดที่เล็ง |
 |---|---|---|
+| `contribution-margin.html` | `/contribution-margin` | contribution margin, gross margin, ต้นทุนผันแปร, ปันส่วนต้นทุน |
 | `measurable-results.html` | `/measurable-results` | data-driven, วัดผล, KPI |
 | `data-quality.html` | `/data-quality` | data governance, คุณภาพข้อมูล |
 | `report-purpose.html` | `/report-purpose` | รายงาน, RPA, ลดงานซ้ำซ้อน |
