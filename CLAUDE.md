@@ -64,7 +64,18 @@ SW_Website/
 ├─ case-studies.html      ← ผลงาน 3 เคส
 ├─ contact.html           ← ฟอร์มติดต่อ + ช่องทางติดต่อ
 ├─ privacy.html           ← นโยบายความเป็นส่วนตัว (PDPA)
+├─ thank-you.html         ← หน้าขอบคุณหลังส่งฟอร์ม (noindex) — จุดนับ conversion
 ├─ 404.html               ← หน้าไม่พบ (noindex)
+│
+├─ insights.html          ← หน้ารวมบทความ
+├─ measurable-results.html          ┐
+├─ data-quality.html                │
+├─ report-purpose.html              │
+├─ cfo-dashboard.html               ├─ บทความ 8 หน้า (ดู §6.7)
+├─ profit-vs-cash.html              │   ชื่อไฟล์ = slug = URL
+├─ vertical-horizontal-analysis.html│
+├─ inventory-dashboard.html         │
+├─ warehouse-cube-utilisation.html  ┘
 │
 ├─ assets/
 │  ├─ css/tokens.css      ← สี ฟอนต์ ระยะ เงา — "แหล่งความจริงเดียว" ของดีไซน์
@@ -85,7 +96,6 @@ SW_Website/
 ├─ dist/                  ← สร้างอัตโนมัติตอน deploy (อยู่ใน .gitignore ห้ามแก้มือ)
 ├─ design-source/         ← zip ดีไซน์ต้นฉบับ (อ้างอิงเท่านั้น)
 ├─ _headers               ← security + cache headers ของ Cloudflare Pages
-├─ _redirects             ← URL สวย ๆ เช่น /services → /services.html
 ├─ robots.txt, sitemap.xml
 └─ .gitignore
 ```
@@ -257,6 +267,46 @@ Worker "sw-contact" ตัวเดียว ทำ 2 อย่าง
 แต่ยังไม่แก้ privacy.html — กันประกาศเท็จโดยไม่ตั้งใจ
 
 **เพิ่มไฟล์ JS ใหม่** ต้องเพิ่มชื่อในลิสต์ `assets` ของ `tools/publish.py` ด้วย ไม่งั้นไม่ได้ติดเวอร์ชัน → ติดแคชค้าง
+
+## 6.7 ระบบบทความ (Insights)
+
+หน้าบทความมีไว้ให้คนค้นเจอผ่าน Google ด้วยคำค้นที่ลูกค้าพิมพ์จริง
+แต่ละบทความเป็น **หน้าแยก 1 URL** ไม่ใช่รวมในหน้าเดียว เพราะ Google จัดอันดับทีละหน้า
+หน้าเดียวยาว ๆ จะแย่งคีย์เวิร์ดกันเอง
+
+| ไฟล์ | URL | คีย์เวิร์ดที่เล็ง |
+|---|---|---|
+| `measurable-results.html` | `/measurable-results` | data-driven, วัดผล, KPI |
+| `data-quality.html` | `/data-quality` | data governance, คุณภาพข้อมูล |
+| `report-purpose.html` | `/report-purpose` | รายงาน, RPA, ลดงานซ้ำซ้อน |
+| `cfo-dashboard.html` | `/cfo-dashboard` | dashboard ผู้บริหาร, what-if, scenario |
+| `profit-vs-cash.html` | `/profit-vs-cash` | กระแสเงินสด, กำไร, working capital |
+| `vertical-horizontal-analysis.html` | `/vertical-horizontal-analysis` | วิเคราะห์งบการเงิน, COGS |
+| `inventory-dashboard.html` | `/inventory-dashboard` | สินค้าคงคลัง, dead stock, FIFO |
+| `warehouse-cube-utilisation.html` | `/warehouse-cube-utilisation` | คลังสินค้า, AS/RS, VNA |
+
+**คลาส CSS ของบทความ** (อยู่ท้าย `site.css`) — ใช้ซ้ำ อย่าสร้างใหม่
+
+| คลาส | ใช้ทำอะไร |
+|---|---|
+| `.article` | กล่องเนื้อบทความ จำกัดกว้างที่ `--measure` |
+| `.article h2` | หัวข้อย่อย serif + เส้นหมึกด้านบน |
+| `.article__meta` | บรรทัดวันที่ · เวลาอ่าน · หมวด |
+| `.article__q` | คำถามปิดท้ายบทความ |
+| `.article__table` | ตารางในบทความ เลื่อนแนวนอนได้บนมือถือ |
+| `.post-list` / `.post` | รายการบทความในหน้า `/insights` และหน้าแรก |
+
+**ทุกบทความมี JSON-LD ชนิด `BlogPosting`** ระบุผู้เขียนเป็นกรรมการผู้จัดการ
+ถ้าเพิ่มบทความใหม่ต้องมีด้วย ไม่งั้นเสียโอกาสแสดงผลแบบ rich result
+
+**เพิ่มบทความใหม่ต้องแตะ 5 ที่เสมอ** — ดูขั้นตอนละเอียดใน SKILL.md สถานการณ์ที่ 3.5
+ลืมที่ใดที่หนึ่ง = บทความไม่ขึ้นเว็บ หรือขึ้นแต่ Google ไม่เห็น
+
+> **หมายเหตุเรื่องเมนู** — พอเพิ่มเมนู "บทความ" เป็นรายการที่ 7 หัวเว็บเริ่มล้นที่ราว 1,100px
+> จึงย้าย breakpoint เมนูมือถือจาก 1080px เป็น **1160px** ถ้าจะเพิ่มเมนูอีก ต้องตรวจจุดนี้ซ้ำ
+> (วิธีตรวจ: เปิดหน้าเว็บแล้วเทียบ `document.documentElement.scrollWidth` กับ `clientWidth`)
+
+---
 
 ## 7. Deploy บน Cloudflare Pages
 

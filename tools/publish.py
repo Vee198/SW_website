@@ -18,7 +18,17 @@ DIST = os.path.join(ROOT, "dist")
 # ไฟล์/โฟลเดอร์ที่ "เผยแพร่" ได้
 PAGES = ["index.html", "services.html", "about.html", "vision.html",
          "case-studies.html", "contact.html", "privacy.html",
-         "thank-you.html", "404.html"]
+         "thank-you.html", "404.html",
+         # หน้าบทความ (Insights) — เพิ่มชื่อไฟล์ที่นี่ทุกครั้งที่เขียนบทความใหม่
+         "insights.html",
+         "measurable-results.html",
+         "data-quality.html",
+         "report-purpose.html",
+         "cfo-dashboard.html",
+         "profit-vs-cash.html",
+         "vertical-horizontal-analysis.html",
+         "inventory-dashboard.html",
+         "warehouse-cube-utilisation.html"]
 EXTRAS = ["robots.txt", "sitemap.xml", "_headers"]
 # หมายเหตุ: ไม่มี _redirects แล้ว — Cloudflare เสิร์ฟ URL แบบไม่มี .html ให้เองอยู่แล้ว
 #           ถ้าใส่ _redirects ที่แมป /services → /services.html จะเกิด redirect วนไม่รู้จบ

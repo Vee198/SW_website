@@ -376,7 +376,7 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   .profile__photo img { max-width: 320px; }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1160px) {
   .site-header__inner { flex-wrap: wrap; }
   .brand__tag { display: none; }
   .nav-toggle { display: block; order: 3; margin-left: auto; }
@@ -450,3 +450,69 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 .line-qr { flex: 0 0 auto; display: block; border: 1px solid var(--border-hairline); padding: 6px; }
 .line-qr img { width: 104px; height: 104px; }
 @media (max-width: 620px) { .line-card { flex-direction: column; } }
+
+/* ---------- บทความ (Insights) -------------------------------------------
+   ใช้โทน editorial เดิม: หัวข้อ serif เส้นแบ่งบาง ไม่มีเงา ไม่มีมุมโค้ง
+   ความกว้างจำกัดที่ --measure เพราะบรรทัดยาวเกิน ~75 ตัวอักษรอ่านล้า        */
+.article { max-width: var(--measure); margin-top: var(--sp-10); }
+.article h2 {
+  font-family: var(--font-display); font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold); color: var(--text-strong);
+  line-height: var(--lh-tight); margin: var(--sp-10) 0 0;
+  padding-top: var(--sp-5); border-top: 2px solid var(--sw-ink);
+}
+.article p {
+  margin-top: var(--sp-5); color: var(--text-body);
+  font-size: var(--fs-body); line-height: var(--lh-relaxed); text-wrap: pretty;
+}
+.article .checklist { font-size: var(--fs-body); }
+.article strong { color: var(--text-strong); font-weight: var(--fw-semibold); }
+.article__meta { font-size: var(--fs-xs); margin-top: var(--sp-4); }
+
+/* คำถามปิดท้าย — ตั้งใจให้เป็นจุดหยุดสายตาสุดท้ายก่อนปุ่ม CTA */
+.article__q {
+  margin-top: var(--sp-10); padding-top: var(--sp-6);
+  border-top: 2px solid var(--sw-ink);
+  font-family: var(--font-display); font-size: var(--fs-lead);
+  color: var(--text-strong); line-height: var(--lh-normal);
+}
+
+/* ตารางในบทความ — เลื่อนแนวนอนได้บนมือถือ ไม่ดันหน้าให้ล้น */
+.article__table { margin-top: var(--sp-5); overflow-x: auto; }
+.article__table table {
+  width: 100%; min-width: 640px;   /* กันคอลัมน์บีบจนอ่านไม่ออกบนมือถือ — ให้เลื่อนแทน */
+  border-collapse: collapse; font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+/* จอกว้างให้ตารางล้นออกจากความกว้างย่อหน้าได้เล็กน้อย อ่านง่ายขึ้นมาก
+   ยังอยู่ในขอบ .container จึงไม่ทำให้หน้าเลื่อนแนวนอน */
+@media (min-width: 980px) { .article__table { width: 820px; } }
+.article__table th, .article__table td {
+  text-align: left; padding: var(--sp-3) var(--sp-4) var(--sp-3) 0;
+  border-bottom: 1px solid var(--border-hairline); vertical-align: top;
+}
+.article__table th {
+  color: var(--text-strong); font-weight: var(--fw-semibold);
+  border-bottom: 1px solid var(--border-strong); white-space: nowrap;
+}
+.article__table td { color: var(--text-body); }
+
+/* ---------- รายการบทความในหน้า /insights -------------------------------- */
+.post-list { margin-top: var(--sp-10); display: grid; gap: var(--sp-8); max-width: 860px; }
+.post {
+  display: block; text-decoration: none; color: inherit;
+  border-top: 2px solid var(--sw-ink); padding-top: var(--sp-5);
+}
+.post:hover .post__title, .post:focus-visible .post__title { text-decoration: underline; }
+.post__kicker {
+  font-size: var(--fs-2xs); font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--text-muted);
+}
+.post__title {
+  font-family: var(--font-display); font-size: var(--fs-h3); font-weight: var(--fw-semibold);
+  color: var(--text-strong); line-height: var(--lh-tight); margin-top: var(--sp-3);
+}
+.post__excerpt {
+  margin-top: var(--sp-3); color: var(--text-body);
+  font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+}

@@ -18,7 +18,17 @@ import os, re, sys, io
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "services.html", "about.html", "vision.html",
          "case-studies.html", "contact.html", "privacy.html",
-         "thank-you.html", "404.html"]
+         "thank-you.html", "404.html",
+         # หน้าบทความ (Insights) — เพิ่มชื่อไฟล์ที่นี่ทุกครั้งที่เขียนบทความใหม่
+         "insights.html",
+         "measurable-results.html",
+         "data-quality.html",
+         "report-purpose.html",
+         "cfo-dashboard.html",
+         "profit-vs-cash.html",
+         "vertical-horizontal-analysis.html",
+         "inventory-dashboard.html",
+         "warehouse-cube-utilisation.html"]
 
 errors, warnings = [], []
 

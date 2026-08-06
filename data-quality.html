@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th" data-lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Transformation ส่วนใหญ่ไม่ได้ล้มเพราะเทคโนโลยี แต่ล้มที่คุณภาพข้อมูล | SW Strategic Solutions Group</title>
+<meta name="description" content="ก่อนจะลงทุนกับ Dashboard, AI หรือระบบอัตโนมัติ — คุณภาพข้อมูลคือสิ่งแรกใน Data Governance ที่ต้องจัดการ พร้อมหลัก 3 ข้อที่ใช้ได้จริง">
+<meta name="sw-title-th" content="Data Transformation ส่วนใหญ่ไม่ได้ล้มเพราะเทคโนโลยี แต่ล้มที่คุณภาพข้อมูล | SW Strategic Solutions Group">
+<meta name="sw-title-en" content="Most Data Transformations Don’t Fail on Technology. They Fail on Data Quality. | SW Strategic Solutions Group">
+<link rel="canonical" href="https://swstrategicsol.com/data-quality">
+<meta name="theme-color" content="#0E1525">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SW Strategic Solutions Group">
+<meta property="og:title" content="Data Transformation ส่วนใหญ่ไม่ได้ล้มเพราะเทคโนโลยี แต่ล้มที่คุณภาพข้อมูล | SW Strategic Solutions Group">
+<meta property="og:description" content="ก่อนจะลงทุนกับ Dashboard, AI หรือระบบอัตโนมัติ — คุณภาพข้อมูลคือสิ่งแรกใน Data Governance ที่ต้องจัดการ พร้อมหลัก 3 ข้อที่ใช้ได้จริง">
+<meta property="og:url" content="https://swstrategicsol.com/data-quality">
+<meta property="og:image" content="https://swstrategicsol.com/assets/img/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/logo-knight.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/logo-knight.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+/* ตั้งภาษาก่อนวาดหน้า เพื่อกันข้อความกระพริบสลับภาษา */
+(function(){try{var l=localStorage.getItem('sw-lang');if(l==='en'){document.documentElement.setAttribute('data-lang','en');document.documentElement.setAttribute('lang','en');}}catch(e){}})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Data Transformation ส่วนใหญ่ไม่ได้ล้มเพราะเทคโนโลยี แต่ล้มที่คุณภาพข้อมูล",
+  "alternativeHeadline": "Most Data Transformations Don’t Fail on Technology. They Fail on Data Quality.",
+  "description": "ก่อนจะลงทุนกับ Dashboard, AI หรือระบบอัตโนมัติ — คุณภาพข้อมูลคือสิ่งแรกใน Data Governance ที่ต้องจัดการ พร้อมหลัก 3 ข้อที่ใช้ได้จริง",
+  "inLanguage": [
+    "th",
+    "en"
+  ],
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://swstrategicsol.com/data-quality"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Veerachai Suwatvanich",
+    "jobTitle": "Managing Director"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SW Strategic Solutions Group Co., Ltd.",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://swstrategicsol.com/assets/img/logo-knight.png"
+    }
+  },
+  "image": "https://swstrategicsol.com/assets/img/og-cover.jpg"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main"><span lang="th">ข้ามไปเนื้อหาหลัก</span><span lang="en">Skip to main content</span></a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="/">
+      <img src="assets/img/logo-knight.png" alt="SW Strategic Solutions Group" width="42" height="42">
+      <span>
+        <span class="brand__name">STRATEGIC SOLUTIONS GROUP</span><br>
+        <span class="brand__tag">FINANCIAL STRATEGY · ANALYTICS · TRANSFORMATION</span>
+      </span>
+    </a>
+    <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="เมนู">☰</button>
+    <nav class="nav" id="site-nav" data-nav aria-label="เมนูหลัก">
+          <a href="/"><span lang="th">หน้าแรก</span><span lang="en">Home</span></a>
+          <a href="/services"><span lang="th">บริการ</span><span lang="en">Services</span></a>
+          <a href="/about"><span lang="th">เกี่ยวกับเรา</span><span lang="en">About</span></a>
+          <a href="/vision"><span lang="th">วิสัยทัศน์</span><span lang="en">Vision</span></a>
+          <a href="/case-studies"><span lang="th">ผลงาน</span><span lang="en">Case Studies</span></a>
+          <a href="/insights" aria-current="page"><span lang="th">บทความ</span><span lang="en">Insights</span></a>
+          <a href="/contact"><span lang="th">ติดต่อเรา</span><span lang="en">Contact</span></a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="เลือกภาษา / Language">
+        <button type="button" data-lang-btn="th" aria-pressed="true">TH</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="btn btn--primary btn--sm" href="/contact"><span lang="th">นัดคุยฟรี</span><span lang="en">Book a Call</span></a>
+    </div>
+  </div>
+</header>
+<main id="main" class="container page">
+  <p class="eyebrow">Insights</p>
+  <h1 class="h-page"><span lang="th">Data Transformation ส่วนใหญ่ไม่ได้ล้มเพราะเทคโนโลยี แต่ล้มที่คุณภาพข้อมูล</span><span lang="en">Most Data Transformations Don’t Fail on Technology. They Fail on Data Quality.</span></h1>
+  <p class="faint article__meta"><span lang="th">6 สิงหาคม 2569 · อ่าน 5 นาที · ธรรมาภิบาลข้อมูล</span><span lang="en">6 August 2026 · 5 min read · Data Governance</span></p>
+  <p class="lead" lang="th">โครงการ Data Transformation ส่วนใหญ่ที่ล้มเหลว ไม่ได้ล้มเพราะเลือกเครื่องมือผิด แต่ล้มเพราะข้อมูลที่ป้อนเข้าไปเชื่อถือไม่ได้ตั้งแต่แรก ก่อนจะลงทุนกับ Dashboard, AI หรือระบบอัตโนมัติ นี่คือสิ่งแรกในกรอบธรรมาภิบาลข้อมูลที่ควรได้รับความสนใจ</p>
+  <p class="lead" lang="en">Most failed data transformations don’t fail on tool selection. They fail because the data going in was never trustworthy. Before dashboards, AI or automation, this is the first thing in your data governance framework that deserves attention.</p>
+
+  <article class="article">    <h2><span lang="th">1. วัดมัน อย่าบรรยายมัน</span><span lang="en">1. Measure it. Don’t describe it.</span></h2>      <p lang="th">“ข้อมูลเราโอเค” หรือ “มันกำลังดีขึ้น” ไม่มีความหมายในเชิงบริหาร เพราะตรวจสอบไม่ได้และเปรียบเทียบไม่ได้ ให้กำหนดตัวชี้วัดจากลักษณะธุรกิจ ผลกระทบ และความเสี่ยงของคุณเอง</p>
+      <p lang="en">“Our data is fine” or “it’s getting better” means nothing managerially — you can’t audit it and you can’t compare it. Define metrics based on your business, its impact and its risk.</p>
+      <p lang="th">เริ่มจากสามตัวพื้นฐานนี้ก่อน</p>
+      <p lang="en">Start with these three basics.</p>
+      <ul class="checklist">
+        <li lang="th"><strong>ความถูกต้อง (Accuracy)</strong> — สต๊อกในระบบเทียบกับการนับจริงที่หน้างาน ต่างกันกี่เปอร์เซ็นต์</li>
+        <li lang="th"><strong>ความสอดคล้อง (Consistency)</strong> — ข้อมูลตัวเดียวกันในคนละระบบ ตรงกันหรือไม่</li>
+        <li lang="th"><strong>ความทันเวลา (Timeliness)</strong> — ข้อมูลพร้อมใช้ตอนที่ต้องตัดสินใจ หรือมาถึงหลังจากตัดสินใจไปแล้ว</li>
+        <li lang="en"><strong>Accuracy</strong> — system inventory versus physical stock count. What’s the variance?</li>
+        <li lang="en"><strong>Consistency</strong> — is the same data point identical across systems?</li>
+        <li lang="en"><strong>Timeliness</strong> — is the data available when the decision is made, or after?</li>
+      </ul>
+      <p lang="th">อะไรที่ถูกวัด สิ่งนั้นถึงจะถูกปรับปรุง ตราบใดที่คุณภาพข้อมูลยังเป็นคำคุณศัพท์ ไม่ใช่ตัวเลข มันจะไม่มีใครรับผิดชอบ</p>
+      <p lang="en">What gets measured gets improved. As long as data quality is an adjective rather than a number, nobody owns it.</p>    <h2><span lang="th">2. ข้อมูลผิดไม่ใช่แค่ยอดกระทบไม่ตรง</span><span lang="en">2. Bad data isn’t just a reconciliation difference</span></h2>      <p lang="th">ผลต่างเล็ก ๆ ในงบการเงินดูเหมือนไม่มีพิษภัย — จนกระทั่งมันไปขับเคลื่อนการตัดสินใจก้อนใหญ่ สั่งซื้อเกินเพราะข้อมูลสต๊อกผิด ตั้งราคาพลาดเพราะต้นทุนไม่ครบ ตัดสินใจปิดไลน์ผลิตจากตัวเลขกำไรที่ปันส่วนมาไม่ถูก</p>
+      <p lang="en">A small variance in a financial statement looks harmless — until it drives a big decision. Over-ordering from wrong stock data. Mispricing from incomplete costs. Shutting a production line on margin figures that were misallocated in the first place.</p>
+      <p lang="th">ทุกการตัดสินใจทางธุรกิจดีได้แค่เท่าที่ข้อมูลเบื้องหลังมันดี นี่ไม่ใช่ปัญหาของฝ่ายบัญชี แต่เป็นความเสี่ยงระดับองค์กร</p>
+      <p lang="en">Every business decision is only as good as the data behind it. That is not an accounting problem — it is an enterprise risk.</p>    <h2><span lang="th">3. เราไม่ได้หาคนผิด เราหาเจ้าของ</span><span lang="en">3. We’re not looking for someone to blame</span></h2>      <p lang="th">คำถามไม่ใช่ “ใครทำพัง” แต่คือ “ใครคือเจ้าของข้อมูลชุดนี้” — ผู้รับผิดชอบที่ระบุตัวได้จริงสำหรับแต่ละชุดข้อมูล</p>
+      <p lang="en">The question is not “who broke this” but “who owns this dataset” — a named, contactable owner for each one.</p>
+      <p lang="th">เพราะการรู้ว่าใครเป็นเจ้าของข้อมูล แปลว่าคุณแก้ที่ต้นเหตุได้ครั้งเดียวจบ แทนที่จะไล่ปะอาการเดิมทุกเดือน องค์กรที่ไม่มีเจ้าของข้อมูล จะใช้เวลาช่วงปิดงบไปกับการตามหาว่าตัวเลขนี้มาจากไหน แทนที่จะวิเคราะห์ว่ามันแปลว่าอะไร</p>
+      <p lang="en">Knowing who owns the data means fixing the root cause once, instead of patching the same symptom every month. Organisations without data owners spend the close chasing where a number came from, rather than analysing what it means.</p>    <h2><span lang="th">คำถามเดียวก่อนลงทุนกับ Analytics ขั้นสูง</span><span lang="en">One question before investing in advanced analytics</span></h2>      <p lang="th">ถามตัวเองว่า <strong>“วันนี้เราวัดคุณภาพข้อมูลของเราออกมาเป็นตัวเลขได้ไหม”</strong> ถ้าตอบไม่ได้ นั่นคือจุดที่การเปลี่ยนแปลงของคุณควรเริ่ม ไม่ใช่ที่การเลือกแพลตฟอร์ม</p>
+      <p lang="en">Ask yourself: <strong>“Can we measure our data quality in numbers today?”</strong> If not, that’s where your transformation should start — not with platform selection.</p>    <p class="article__q"><span lang="th">ปัญหาคุณภาพข้อมูลแบบไหนที่คุณเคยเจอ</span><span lang="en">What data quality issues have you run into?</span></p>
+  </article>
+
+  <div class="btn-row" style="margin-top:var(--sp-12)">
+    <a class="btn btn--primary" href="/contact"><span lang="th">คุยเรื่องนี้กับเรา — นัดคุยฟรี</span><span lang="en">Talk This Through — Book a Free Call</span></a>
+    <a class="btn btn--ghost" href="/insights"><span lang="th">อ่านบทความอื่น</span><span lang="en">More Insights</span></a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__cols">
+    <div>
+      <div class="site-footer__brand">
+        <img src="assets/img/logo-knight.png" alt="" width="36" height="36">
+        <span class="brand__name">STRATEGIC SOLUTIONS GROUP</span>
+      </div>
+      <p class="muted" style="margin-top:var(--sp-5)" lang="th">ที่ปรึกษาด้านข้อมูลและการเงิน สำหรับธุรกิจไทยที่อยากตัดสินใจด้วยตัวเลขที่เชื่อถือได้</p>
+      <p class="muted" style="margin-top:var(--sp-5)" lang="en">Data and finance consulting for Thai businesses that decide with numbers they can trust.</p>
+    </div>
+    <div>
+      <div class="site-footer__title">MENU</div>
+      <nav class="site-footer__list" aria-label="เมนูส่วนท้าย">
+          <a href="/"><span lang="th">หน้าแรก</span><span lang="en">Home</span></a>
+          <a href="/services"><span lang="th">บริการ</span><span lang="en">Services</span></a>
+          <a href="/about"><span lang="th">เกี่ยวกับเรา</span><span lang="en">About</span></a>
+          <a href="/vision"><span lang="th">วิสัยทัศน์</span><span lang="en">Vision</span></a>
+          <a href="/case-studies"><span lang="th">ผลงาน</span><span lang="en">Case Studies</span></a>
+          <a href="/insights"><span lang="th">บทความ</span><span lang="en">Insights</span></a>
+          <a href="/contact"><span lang="th">ติดต่อเรา</span><span lang="en">Contact</span></a>
+      </nav>
+    </div>
+    <div>
+      <div class="site-footer__title">CONTACT</div>
+      <dl class="site-footer__list">
+        <div>
+          <dt><span lang="th">โทรศัพท์</span><span lang="en">Phone</span></dt>
+          <dd><a href="tel:+66641549955">064-154-9955</a></dd>
+        </div>
+        <div>
+          <dt><span lang="th">อีเมล</span><span lang="en">Email</span></dt>
+          <dd><a href="mailto:v.suwatvanich@swstrategicsol.com">v.suwatvanich@swstrategicsol.com</a></dd>
+        </div>
+        <div>
+          <dt>LINE</dt>
+          <dd><a href="https://line.me/R/ti/p/@160fupme" target="_blank" rel="noopener" data-line-cta>@160fupme</a></dd>
+        </div>
+        <div>
+          <dt><span lang="th">สำนักงาน</span><span lang="en">Office</span></dt>
+          <dd lang="th">อ.บางใหญ่ จ.นนทบุรี 11140</dd>
+          <dd lang="en">Bang Yai, Nonthaburi 11140, Thailand</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+  <div class="site-footer__bar">
+    <div>
+      <div>© 2026 SW Strategic Solutions Group Co., Ltd.<span class="faint"> · <span lang="th">ทะเบียนนิติบุคคล</span><span lang="en">Reg. No.</span> 0125569020330</span></div>
+      <div><a href="/privacy"><span lang="th">นโยบายความเป็นส่วนตัว</span><span lang="en">Privacy Policy</span></a> · FINANCIAL STRATEGY · ANALYTICS · BUSINESS TRANSFORMATION</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ปุ่ม LINE ลอยมุมขวาล่าง — ช่องทางที่คนไทยใช้มากที่สุด -->
+<a class="line-fab" href="https://line.me/R/ti/p/@160fupme" target="_blank" rel="noopener"
+   data-line-cta aria-label="ทักเราทาง LINE">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M12 2C6.48 2 2 5.79 2 10.46c0 4.18 3.55 7.68 8.35 8.34.33.07.77.22.88.5.1.26.07.66.03.92l-.14.85c-.4.25-.2.98.86.53.86-.44 4.63-2.73 6.32-4.67C19.63 14.6 22 12.76 22 10.46 22 5.79 17.52 2 12 2M8.09 13.2H6.1a.53.53 0 0 1-.53-.53V8.7a.53.53 0 0 1 1.06 0v3.44h1.46a.53.53 0 0 1 0 1.06m2.08-.53a.53.53 0 0 1-1.06 0V8.7a.53.53 0 0 1 1.06 0zm4.79 0a.53.53 0 0 1-.36.5.55.55 0 0 1-.17.03.53.53 0 0 1-.43-.21l-2.04-2.77v2.45a.53.53 0 0 1-1.06 0V8.7a.53.53 0 0 1 .36-.5.53.53 0 0 1 .6.18l2.04 2.78V8.7a.53.53 0 0 1 1.06 0zm3.21-2.51a.53.53 0 0 1 0 1.06h-1.46v.92h1.46a.53.53 0 0 1 0 1.06h-1.99a.53.53 0 0 1-.53-.53V8.7a.53.53 0 0 1 .53-.53h1.99a.53.53 0 0 1 0 1.06h-1.46v.93z"/>
+  </svg>
+  <span class="line-fab__label"><span lang="th">ทักเราทาง LINE</span><span lang="en">Chat on LINE</span></span>
+</a>
+
+<script src="assets/js/tracking.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
