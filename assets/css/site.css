@@ -137,9 +137,11 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 .stat {
   font-family: var(--font-display); font-size: 56px; font-weight: var(--fw-semibold);
   color: var(--text-strong); font-variant-numeric: tabular-nums; line-height: 1;
-  letter-spacing: -.02em;
-  /* plate เหลื่อมสีแบบแท่นพิมพ์ — ลายเซ็นของธีม Broadsheet */
-  text-shadow: 0.045em 0.03em 0 var(--plate-c), -0.04em -0.028em 0 var(--plate-m);
+  /* letter-spacing: 0 โดยตั้งใจ — ค่าติดลบทำให้สัญลักษณ์ ฿ (มาจาก Noto Serif Thai)
+     ทับกับตัวเลขตัวแรก (มาจาก Source Serif 4) เพราะสองฟอนต์มี metric ไม่เท่ากัน */
+  letter-spacing: 0;
+  /* เคยมี text-shadow เหลื่อมสี cyan/magenta ตรงนี้ — เอาออกแล้ว
+     เจ้าของอ่านแล้วรู้สึกว่าตัวเลขไม่คม เป็นภาพซ้อน ห้ามใส่กลับ */
 }
 .stat--md   { font-size: 40px; }
 .stat--sm   { font-size: 30px; }
@@ -155,16 +157,9 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 
 /* -- กรอบรูป: เส้นบาง ไม่มีเงา -- */
 .frame {
-  border: 0; position: relative;
+  border: 1px solid var(--border-hairline);
   overflow: hidden; background: var(--surface-sunken);
 }
-/* จอจุด halftone แบบ newsprint — ภาพ interface พิมพ์เป็น dot screen */
-.frame::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(0,0,0,.22) 30%, transparent 32%);
-  background-size: 3px 3px; mix-blend-mode: multiply;
-}
-.frame img { filter: grayscale(.35) contrast(1.15); }
 .frame--16x9 { aspect-ratio: 16 / 9; }
 .frame--16x10 { aspect-ratio: 16 / 10; }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -298,13 +293,13 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   border-top: 1px solid var(--border-hairline);
   display: grid; grid-template-columns: 300px 1fr; gap: var(--sp-12); padding-top: var(--sp-8);
 }
-.profile__photo { min-height: 0; position: relative; overflow: hidden; }
-.profile__photo::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(0,0,0,.22) 30%, transparent 32%);
-  background-size: 3px 3px; mix-blend-mode: multiply;
+/* align-self: start สำคัญ — ถ้าไม่ใส่ กล่องรูปจะถูกยืดสูงเท่าคอลัมน์ข้อความ
+   แล้วเหลือพื้นที่ว่างใต้รูปเป็นแถบยาว (เคยเป็นปัญหามาแล้ว) */
+.profile__photo {
+  align-self: start; overflow: hidden;
+  border: 1px solid var(--border-hairline);
 }
-.profile__photo img { width: 100%; height: auto; filter: grayscale(.35) contrast(1.15); }
+.profile__photo img { width: 100%; height: auto; display: block; }
 .profile__body { padding: 0; }
 .profile__body h3 { font-size: 28px; font-weight: var(--fw-regular); }
 .profile__role { margin-top: var(--sp-2); font-size: var(--fs-2xs); letter-spacing: var(--ls-label); color: var(--text-muted); text-transform: uppercase; }
@@ -537,3 +532,50 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   margin-top: var(--sp-3); color: var(--text-body);
   font-size: var(--fs-sm); line-height: var(--lh-relaxed);
 }
+
+
+/* ==========================================================================
+   Brand color layer — "จัดเต็ม ให้จำแบรนด์ได้" (spot color แบบหนังสือพิมพ์)
+   cyan = สีนำของแบรนด์  |  magenta = ขีดสั้น ๆ ตกแต่ง  |  พื้นยังเป็นกระดาษ
+   ========================================================================== */
+
+/* หัวข้อ section: eyebrow เป็น cyan เข้ม พร้อมขีด magenta นำหน้า */
+.eyebrow { color: var(--sw-gold); }
+.eyebrow::before {
+  content: ""; display: inline-block; width: 22px; height: 3px;
+  background: var(--sw-gold-line); margin-right: 10px; vertical-align: middle;
+}
+
+/* ตัวเลขผลลัพธ์: หมึก cyan เข้ม — จุดจำของแบรนด์ */
+.stat { color: var(--sw-gold); }
+
+/* ลายน้ำม้าหมากรุกจาง ๆ ฝั่งขวาของ hero — gimmick ประจำแบรนด์ */
+.hero { position: relative; overflow: hidden; }
+.hero::after {
+  content: ""; position: absolute; top: -6%; right: -70px; bottom: -6%;
+  width: 420px; pointer-events: none; z-index: 0;
+  background: url('../img/logo-knight-ink.png') no-repeat center / contain;
+  opacity: .05;
+}
+.hero__inner { position: relative; z-index: 1; }
+
+/* เส้นหนา-บางของ header: เส้นบางเป็น magenta — front-page furniture มีสี */
+.site-header::after { border-bottom-color: var(--sw-gold-line); }
+.site-footer::before { border-bottom-color: var(--sw-gold-line); }
+
+/* การ์ดขั้นตอนทำงาน: ตัวเลขลำดับเป็น cyan (ถ้ามี) */
+.step__num, .card-kicker { color: var(--sw-gold); }
+
+/* ป้าย pill: ขอบ cyan อ่อน ๆ */
+.pill { border-color: var(--sw-gold); color: var(--sw-gold); }
+
+/* ลายน้ำม้าหมากรุกบนหน้ารอง — เล็กกว่าหน้าแรก อยู่มุมขวาบนแถวหัวเรื่อง */
+.page { position: relative; }
+.page::before {
+  content: ""; position: absolute; top: var(--sp-8); right: 0;
+  width: 240px; height: 300px; pointer-events: none; z-index: 0;
+  background: url('../img/logo-knight-ink.png') no-repeat top right / contain;
+  opacity: .045;
+}
+.page > * { position: relative; z-index: 1; }
+@media (max-width: 720px) { .page::before { width: 150px; height: 190px; } }
