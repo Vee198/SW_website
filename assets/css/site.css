@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SW Strategic Solutions Group — Site stylesheet  |  ธีม Editorial Light
+   SW Strategic Solutions Group — Site stylesheet  |  ธีม Broadsheet Editorial
    โครงสร้าง: 1) Base  2) Layout  3) Components  4) Sections  5) Responsive
    กติกา: ใช้ตัวแปรจาก tokens.css เท่านั้น ห้ามฝัง hex ใหม่ในไฟล์นี้
    หลักการ: เส้นแบ่งแทนกล่องเงา · หัวข้อ serif · เว้นที่ว่างเยอะ · มุมเหลี่ยม
@@ -34,13 +34,13 @@ h1, h2, h3, h4 {
   margin: 0;
   letter-spacing: -.005em;
 }
-h1 { font-weight: var(--fw-regular); }   /* หัวใหญ่ใช้น้ำหนักปกติ ดูสง่ากว่าตัวหนา */
+h1 { font-weight: var(--fw-semibold); }   /* Broadsheet: หัวข้อ serif น้ำหนัก 600 */
 h2, h3, h4 { font-weight: var(--fw-semibold); }
 
 p { margin: 0; }
 ul { margin: 0; }
 
-:focus-visible { outline: 2px solid var(--sw-ink); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 100;
@@ -135,9 +135,11 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 
 /* -- ตัวเลขผลลัพธ์: serif ตัวใหญ่ สีหมึก — จุดที่ดูแพงที่สุดของหน้า -- */
 .stat {
-  font-family: var(--font-display); font-size: 56px; font-weight: var(--fw-regular);
+  font-family: var(--font-display); font-size: 56px; font-weight: var(--fw-semibold);
   color: var(--text-strong); font-variant-numeric: tabular-nums; line-height: 1;
   letter-spacing: -.02em;
+  /* plate เหลื่อมสีแบบแท่นพิมพ์ — ลายเซ็นของธีม Broadsheet */
+  text-shadow: 0.045em 0.03em 0 var(--plate-c), -0.04em -0.028em 0 var(--plate-m);
 }
 .stat--md   { font-size: 40px; }
 .stat--sm   { font-size: 30px; }
@@ -153,9 +155,16 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 
 /* -- กรอบรูป: เส้นบาง ไม่มีเงา -- */
 .frame {
-  border: 1px solid var(--border-hairline);
+  border: 0; position: relative;
   overflow: hidden; background: var(--surface-sunken);
 }
+/* จอจุด halftone แบบ newsprint — ภาพ interface พิมพ์เป็น dot screen */
+.frame::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,0,0,.22) 30%, transparent 32%);
+  background-size: 3px 3px; mix-blend-mode: multiply;
+}
+.frame img { filter: grayscale(.35) contrast(1.15); }
 .frame--16x9 { aspect-ratio: 16 / 9; }
 .frame--16x10 { aspect-ratio: 16 / 10; }
 .frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -164,7 +173,13 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: var(--surface-page);
-  border-bottom: 1px solid var(--border-hairline);
+  border-bottom: 2px solid var(--sw-ink);   /* เส้นหนาของคู่หนา-บาง */
+}
+/* เส้นบางใต้เส้นหนา — front-page furniture ของธีม Broadsheet */
+.site-header::after {
+  content: ""; display: block; height: 3px;
+  border-bottom: 1px solid var(--sw-ink);
+  position: absolute; left: 0; right: 0;
 }
 .site-header__inner {
   max-width: var(--container); margin-inline: auto;
@@ -200,7 +215,7 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 }
 .lang-switch button:hover { color: var(--text-body); }
 .lang-switch button[aria-pressed="true"] {
-  color: var(--text-strong); font-weight: var(--fw-semibold); border-bottom-color: var(--sw-ink);
+  color: var(--sw-gold); font-weight: var(--fw-semibold); border-bottom-color: var(--accent);
 }
 
 .nav-toggle {
@@ -283,8 +298,13 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
   border-top: 1px solid var(--border-hairline);
   display: grid; grid-template-columns: 300px 1fr; gap: var(--sp-12); padding-top: var(--sp-8);
 }
-.profile__photo { min-height: 0; }
-.profile__photo img { width: 100%; height: auto; }
+.profile__photo { min-height: 0; position: relative; overflow: hidden; }
+.profile__photo::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,0,0,.22) 30%, transparent 32%);
+  background-size: 3px 3px; mix-blend-mode: multiply;
+}
+.profile__photo img { width: 100%; height: auto; filter: grayscale(.35) contrast(1.15); }
 .profile__body { padding: 0; }
 .profile__body h3 { font-size: 28px; font-weight: var(--fw-regular); }
 .profile__role { margin-top: var(--sp-2); font-size: var(--fs-2xs); letter-spacing: var(--ls-label); color: var(--text-muted); text-transform: uppercase; }
@@ -343,7 +363,8 @@ html[data-lang="en"] [lang="th"] { display: none !important; }
 .hp { position: absolute; left: -5000px; opacity: 0; height: 0; overflow: hidden; }
 
 /* ---------- Footer ------------------------------------------------------- */
-.site-footer { border-top: 1px solid var(--border-hairline); background: var(--surface-page); margin-top: var(--sp-16); }
+.site-footer { border-top: 2px solid var(--sw-ink); background: var(--surface-page); margin-top: var(--sp-16); position: relative; }
+.site-footer::before { content: ""; display: block; height: 3px; border-bottom: 1px solid var(--sw-ink); position: absolute; top: 0; left: 0; right: 0; }
 .site-footer__cols {
   max-width: var(--container); margin-inline: auto;
   padding: var(--sp-12) var(--sp-7) var(--sp-8);

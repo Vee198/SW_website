@@ -1,11 +1,11 @@
 ---
 name: sw-website
-description: แก้ไขและต่อเติมเว็บไซต์ SW Strategic Solutions Group ให้ตรงกับ design system เดิม ใช้เมื่อผู้ใช้ขอเพิ่มหน้าใหม่ เพิ่ม case study เพิ่มบริการ แก้ข้อความ เปลี่ยนรูป ปรับสี/ฟอนต์ แก้ฟอร์มติดต่อ แก้ Worker/D1 หรือ deploy เว็บไซต์บริษัทนี้ — Use when editing, extending, or deploying the SW Strategic Solutions Group company website (static HTML/CSS/JS, Thai/English bilingual, navy+gold theme, Cloudflare Worker + D1 contact form).
+description: แก้ไขและต่อเติมเว็บไซต์ SW Strategic Solutions Group ให้ตรงกับ design system เดิม ใช้เมื่อผู้ใช้ขอเพิ่มหน้าใหม่ เพิ่ม case study เพิ่มบริการ แก้ข้อความ เปลี่ยนรูป ปรับสี/ฟอนต์ แก้ฟอร์มติดต่อ แก้ Worker/D1 หรือ deploy เว็บไซต์บริษัทนี้ — Use when editing, extending, or deploying the SW Strategic Solutions Group company website (static HTML/CSS/JS, Thai/English bilingual, Broadsheet Editorial theme — newsprint paper, near-black ink, all-serif, Cloudflare Worker + D1 contact form).
 ---
 
 # ทักษะ: ดูแลเว็บไซต์ SW Strategic Solutions Group
 
-เว็บนี้เป็น **static HTML ล้วน สองภาษา ธีม navy+gold** ไม่มี build step
+เว็บนี้เป็น **static HTML ล้วน สองภาษา ธีม Broadsheet Editorial** (กระดาษนวล หมึกเกือบดำ serif ทั้งเว็บ) ไม่มี build step
 เป้าหมายของทักษะนี้คือ ทุกการแก้ไขออกมาแล้ว **ดูเหมือนคนเดิมทำ** — ไม่ใช่ของแปะเพิ่ม
 
 > อ่าน `CLAUDE.md` ให้จบก่อนใช้ไฟล์นี้ — ตรงนั้นคือ "กติกา" ตรงนี้คือ "ขั้นตอนลงมือ"
@@ -173,7 +173,11 @@ description: แก้ไขและต่อเติมเว็บไซต�
 2. ตั้งชื่อไฟล์แบบสื่อความหมาย ตัวพิมพ์เล็ก ขีดกลาง: `case-inventory.webp` ไม่ใช่ `6.png`
 3. ทุก `<img>` ต้องมี: `alt` (ภาษาไทย บรรยายสิ่งที่เห็น), `loading="lazy"` (ยกเว้นโลโก้ hero), `width`/`height` (กัน layout shift)
 4. รูปในกรอบให้ห่อด้วย `.frame` เสมอ — จะได้เส้นขอบบางตรงกับที่อื่น
-5. **ห้ามใส่ `filter: grayscale()` กับโลโก้ลูกค้าหรือรูปบุคคล** — เจ้าของต้องการให้เห็นสีจริง
+5. **ห้ามใส่ `filter: grayscale()` กับโลโก้ลูกค้า** — เจ้าของต้องการให้เห็นสีจริง
+6. **รูปที่อยู่ใน `.frame` และรูป `.profile__photo` จะโดนเอฟเฟกต์ halftone + grayscale 35% อัตโนมัติ**
+   เป็นลายเซ็นของธีม Broadsheet (ดู CLAUDE.md §5) ไม่ต้องไปใส่เอง
+   ถ้าเจ้าของทักว่ารูปซีดเกินไป → ลบ `filter:` สองบรรทัดใน `site.css` (`.frame img` และ `.profile__photo img`)
+   จอจุด halftone เก็บไว้ได้ ไม่ต้องลบตาม
 
 ---
 
@@ -222,7 +226,7 @@ description: แก้ไขและต่อเติมเว็บไซต�
 **สิ่งที่ห้ามแตะถ้าไม่ได้รับคำสั่งชัดเจน** — 4 อย่างนี้คือสิ่งที่ทำให้เว็บดูแพง
 
 ```
---font-display  ต้องเป็น serif      (ถ้าเปลี่ยนเป็น sans เว็บจะดูเหมือนบริษัท SaaS)
+--font-display  ต้องเป็น serif      (และ --font-body ก็ serif ด้วย — ธีมนี้ serif ทั้งเว็บ)
 --shadow-*      ต้องเป็น none       (เงาทำให้ดูเป็นเว็บ template)
 --r-*           ต้องเป็น 0          (มุมโค้งทำให้ดูเป็นแอป ไม่ใช่สำนักที่ปรึกษา)
 --sw-gold       ใช้เฉพาะเส้น/โลโก้   (ทองเยอะทำให้ดูเป็นเว็บคริปโต)

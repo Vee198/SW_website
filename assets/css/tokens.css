@@ -1,50 +1,59 @@
 /* ==========================================================================
-   SW ONE — Design Tokens  |  ธีม "Editorial Light"
-   แนวทางอ้างอิงจากเว็บบริษัทที่ปรึกษาระดับโลก (McKinsey · BCG · Bain)
-     - พื้นขาว ตัวหนังสือหมึกเข้ม ไม่ใช้ธีมมืด
-     - หัวข้อเป็น serif เนื้อความเป็น sans
-     - ไม่มีเงา ไม่มีมุมโค้ง ใช้เส้นแบ่งบาง ๆ แทนกล่อง
+   SW ONE — Design Tokens  |  ธีม "Broadsheet Editorial"
+   แนวทาง: หนังสือพิมพ์คุณภาพ set สำหรับเว็บ — serif ทั้งเว็บ พื้นกระดาษ
+   หมึกเกือบดำ และสี process (cyan / magenta) ใช้น้อย ๆ อย่างตั้งใจ
+     - หัวข้อและเนื้อความเป็น serif ทั้งคู่ (Source Serif 4 + Noto Serif Thai)
+     - ไม่มีเงา ไม่มีมุมโค้ง ใช้เส้นหมึกหนา-บางแบบหน้าหนึ่งหนังสือพิมพ์
      - เว้นที่ว่างเยอะ ปล่อยให้เนื้อหาหายใจ
+     - cyan = ปุ่ม/ลิงก์ (interactive) · magenta = เส้นตกแต่งเล็ก ๆ ที่นาน ๆ ใช้ที
    ห้ามใส่ค่าสีดิบ (hex) ในไฟล์อื่น — ให้อ้างอิงตัวแปรในไฟล์นี้เท่านั้น
    ========================================================================== */
 
 /* ---- Webfonts ------------------------------------------------------------
-   Noto Serif Thai + Source Serif 4 = คู่ serif สำหรับหัวข้อ (แทน Bower ของ McKinsey)
-   IBM Plex Sans Thai + IBM Plex Sans = เนื้อความ ตัวเลขคมชัด อ่านง่ายที่ 16px      */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap');
+   Source Serif 4 = serif หลัก (ละติน)  |  Noto Serif Thai = serif ไทยคู่กัน
+   ทั้งหัวข้อและเนื้อความใช้ชุดเดียวกัน — serif คือ chrome ของธีมนี้           */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap');
 
 :root {
   /* ---- หมึกและกระดาษ ---- */
-  --sw-ink:        #0E1A2B;  /* หมึกหลัก — navy เกือบดำ ใช้กับหัวข้อและปุ่ม */
-  --sw-ink-soft:   #22303F;
-  --sw-paper:      #FFFFFF;  /* พื้นหน้าเว็บ */
-  --sw-paper-warm: #FAF9F7;  /* แถบสลับสี โทนอุ่นนิดหนึ่ง ไม่ใช่เทา */
-  --sw-paper-cool: #F5F6F7;  /* แถบสลับสีอีกระดับ */
+  --sw-ink:        #201E1D;  /* หมึกหลัก — เกือบดำโทนอุ่น ใช้กับหัวข้อและเส้นหมึก */
+  --sw-ink-soft:   #3A3735;
+  --sw-paper:      #F3F2F2;  /* พื้นกระดาษ — ขาวนวลแบบ newsprint ไม่ใช่ขาวจ้า */
+  --sw-paper-warm: #EAE9E9;  /* พื้นผิวยกระดับ (surface) */
+  --sw-paper-cool: #ECEBEB;  /* แถบสลับสีอีกระดับ */
 
   /* ---- ตัวหนังสือ ---- */
-  --text-strong:   #0E1A2B;  /* หัวข้อ */
-  --text-body:     #3D4757;  /* เนื้อความ */
-  --text-muted:    #68717F;  /* คำอธิบายรอง — เข้มพอผ่าน AA ทั้งบนขาวและบนแถบอุ่น */
-  --text-faint:    #8C95A3;  /* ป้ายเล็ก micro-label */
-  --text-on-accent:#FFFFFF;  /* ตัวหนังสือบนปุ่มหมึก */
-  --text-link:     #0E1A2B;
+  --text-strong:   #201E1D;  /* หัวข้อ */
+  --text-body:     #4B4846;  /* เนื้อความ */
+  --text-muted:    #6B6764;  /* คำอธิบายรอง */
+  --text-faint:    #8A8580;  /* ป้ายเล็ก micro-label */
+  --text-on-accent:#F3F2F2;  /* ตัวหนังสือบนปุ่ม cyan */
+  --text-link:     #201E1D;
 
   /* ---- เส้นและพื้นผิว ---- */
-  --border-hairline: #E2E5EA;  /* เส้นแบ่งหลัก — บางมาก ตั้งใจ */
-  --border-strong:   #C6CBD3;
+  --border-hairline: #DCDAD8;  /* เส้นแบ่งรอง — บางมาก */
+  --border-strong:   #B8B5B2;
   --surface-page:    var(--sw-paper);
   --surface-card:    var(--sw-paper);
   --surface-raised:  var(--sw-paper-warm);
   --surface-sunken:  var(--sw-paper-warm);
 
   /* ---- Accent ----
-     ปุ่มหลักเป็นสีหมึก ไม่ใช่สีสด (แบบ McKinsey/Bain)
-     ทองเหลือไว้เป็นสัญลักษณ์แบรนด์เท่านั้น — เส้นคั่นบาง ๆ และโลโก้ */
-  --accent:        var(--sw-ink);
-  --accent-hover:  #22303F;
-  --sw-gold:       #8F6C1F;  /* ทองเข้ม อ่านออกบนพื้นขาว (4.85:1 ผ่าน AA) */
-  --sw-gold-ink:   #85641C;
-  --sw-gold-line:  #C8A24A;  /* ทองสว่าง ใช้เฉพาะเส้นตกแต่ง ไม่ใช้กับตัวหนังสือ */
+     cyan คือสีของสิ่งที่กดได้ (ปุ่มหลัก ลิงก์ hover)
+     magenta เป็น spot color ตัวที่สอง ใช้เฉพาะเส้นตกแต่งสั้น ๆ */
+  /* cyan ของปุ่ม — เข้มกว่า process cyan ดิบเล็กน้อยโดยตั้งใจ
+     #0088B0 ดิบ ๆ ให้ contrast กับตัวหนังสือบนปุ่มแค่ 3.65:1 ซึ่งตกเกณฑ์ WCAG AA (4.5:1)
+     ค่าที่ใช้จริงนี้ได้ 4.91:1 — ตายังอ่านว่าเป็น cyan เหมือนเดิม แต่ผ่านมาตรฐาน
+     ถ้าจะแก้ค่านี้ ต้องรันสคริปต์ตรวจ contrast ใน SKILL.md สถานการณ์ที่ 6 ก่อนเสมอ */
+  --accent:        #00719A;  /* process cyan (ปรับเข้มให้ผ่าน AA) */
+  --accent-hover:  #005C7E;  /* cyan ขั้นเข้ม สำหรับ hover/pressed — 6.64:1 */
+  --sw-gold:       #00607E;  /* cyan-700 อ่านออกที่ขนาดเล็กบนกระดาษ (ชื่อตัวแปรคงเดิมเพื่อไม่ต้องไล่แก้ site.css) */
+  --sw-gold-ink:   #00607E;
+  --sw-gold-line:  #D6006C;  /* process magenta — ใช้เฉพาะเส้นตกแต่ง ไม่ใช้กับตัวหนังสือ */
+
+  /* ---- สี plate สำหรับตัวเลขผลลัพธ์ (เงา cyan/magenta เหลื่อมแบบพิมพ์เหลื่อมสี) ---- */
+  --plate-c: rgba(0, 136, 176, .55);
+  --plate-m: rgba(214, 0, 108, .45);
 
   /* ---- Status ---- */
   --sw-good:       #2F7A55;
@@ -52,8 +61,8 @@
   --sw-bad:        #A83A3A;
 
   /* ---- Typography ---- */
-  --font-display: 'Noto Serif Thai', 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --font-body:    'IBM Plex Sans Thai', 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Source Serif 4', 'Noto Serif Thai', Georgia, 'Times New Roman', serif;
+  --font-body:    'Source Serif 4', 'Noto Serif Thai', Georgia, 'Times New Roman', serif;
   --font-mono:    ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
 
   --fw-light:    300;
@@ -62,42 +71,42 @@
   --fw-semibold: 600;
   --fw-bold:     700;
 
-  /* สเกลตัวอักษร — ใหญ่กว่าเดิมทั้งชุด เพราะ editorial ต้องการความสง่า */
-  --fs-hero:  52px;  /* h1 หน้าแรก (serif น้ำหนัก 400) */
+  /* สเกลตัวอักษร */
+  --fs-hero:  52px;  /* h1 หน้าแรก */
   --fs-h1:    42px;  /* h1 หน้ารอง */
   --fs-h2:    34px;  /* หัวข้อ section */
   --fs-h3:    21px;  /* หัวการ์ด */
   --fs-lead:  18px;  /* ย่อหน้านำ */
-  --fs-body:  16px;  /* เนื้อความ (เดิม 15px) */
+  --fs-body:  16px;  /* เนื้อความ */
   --fs-sm:    15px;
   --fs-xs:    14px;
   --fs-2xs:   11.5px;
 
-  --lh-tight:   1.22;
-  --lh-normal:  1.5;
-  --lh-relaxed: 1.7;   /* เนื้อความหายใจกว่าเดิม */
+  --lh-tight:   1.32;  /* serif ไทยต้องการ leading มากกว่าเดิมเล็กน้อย (สระบน-ล่าง) */
+  --lh-normal:  1.55;
+  --lh-relaxed: 1.75;
 
-  --ls-eyebrow: .24em;  /* SERVICES / CASE STUDIES — ตัวเล็ก ห่างมาก */
+  --ls-eyebrow: .24em;
   --ls-label:   .14em;
 
-  /* ---- Spacing (ฐาน 4px) — ช่วงห่างใหญ่ขึ้นทั้งชุด ---- */
+  /* ---- Spacing (ฐาน 4px) ---- */
   --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
   --sp-5: 20px;  --sp-6: 24px;  --sp-7: 32px;  --sp-8: 40px;
   --sp-10:56px;  --sp-12:72px;  --sp-16:96px;  --sp-18:120px;
 
-  /* ---- Radii — editorial ใช้มุมเหลี่ยม ---- */
+  /* ---- Radii — newsprint ใช้มุมเหลี่ยม ---- */
   --r-sm:   0;
   --r-md:   0;
   --r-lg:   0;
   --r-xl:   0;
-  --r-pill: 999px;   /* เหลือไว้เฉพาะป้าย pill */
+  --r-pill: 999px;   /* เหลือไว้เฉพาะป้าย pill และปุ่ม LINE ลอย */
 
-  /* ---- Shadows — ไม่ใช้เงาเลย ใช้เส้นแบ่งแทน ---- */
+  /* ---- Shadows — ไม่ใช้เงาเลย ใช้เส้นหมึกแทน ---- */
   --shadow-card:  none;
   --shadow-ready: none;
 
   /* ---- Layout ---- */
-  --container: 1120px;   /* แคบลงนิดหนึ่ง อ่านสบายตากว่า */
-  --measure:   660px;    /* ความกว้างสูงสุดของย่อหน้า ~75 ตัวอักษร */
+  --container: 1120px;
+  --measure:   660px;
   --header-h:  76px;
 }
