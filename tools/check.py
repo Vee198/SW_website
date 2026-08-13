@@ -21,6 +21,7 @@ PAGES = ["index.html", "services.html", "about.html", "vision.html",
          "thank-you.html", "404.html",
          # หน้าบทความ (Insights) — เพิ่มชื่อไฟล์ที่นี่ทุกครั้งที่เขียนบทความใหม่
          "insights.html",
+         "contribution-margin-layers.html",
          "contribution-margin.html",
          "measurable-results.html",
          "data-quality.html",

@@ -68,11 +68,12 @@ SW_Website/
 ├─ 404.html               ← หน้าไม่พบ (noindex)
 │
 ├─ insights.html          ← หน้ารวมบทความ
-├─ contribution-margin.html         ┐
+├─ contribution-margin-layers.html  ┐
+├─ contribution-margin.html         │
 ├─ measurable-results.html          │
 ├─ data-quality.html                │
 ├─ report-purpose.html              │
-├─ cfo-dashboard.html               ├─ บทความ 9 หน้า (ดู §6.7)
+├─ cfo-dashboard.html               ├─ บทความ 10 หน้า (ดู §6.7)
 ├─ profit-vs-cash.html              │   ชื่อไฟล์ = slug = URL
 ├─ vertical-horizontal-analysis.html│
 ├─ inventory-dashboard.html         │
@@ -278,6 +279,7 @@ Worker "sw-contact" ตัวเดียว ทำ 2 อย่าง
 | ไฟล์ | URL | คีย์เวิร์ดที่เล็ง |
 |---|---|---|
 | `contribution-margin.html` | `/contribution-margin` | contribution margin, gross margin, ต้นทุนผันแปร, ปันส่วนต้นทุน |
+| `contribution-margin-layers.html` | `/contribution-margin-layers` | CM1, CM2, CM3, single source of truth, กระทบยอด |
 | `measurable-results.html` | `/measurable-results` | data-driven, วัดผล, KPI |
 | `data-quality.html` | `/data-quality` | data governance, คุณภาพข้อมูล |
 | `report-purpose.html` | `/report-purpose` | รายงาน, RPA, ลดงานซ้ำซ้อน |
@@ -297,6 +299,11 @@ Worker "sw-contact" ตัวเดียว ทำ 2 อย่าง
 | `.article__q` | คำถามปิดท้ายบทความ |
 | `.article__table` | ตารางในบทความ เลื่อนแนวนอนได้บนมือถือ |
 | `.post-list` / `.post` | รายการบทความในหน้า `/insights` และหน้าแรก |
+
+**บทความที่เป็นชุดต่อเนื่อง ต้องลิงก์ไป-กลับหากันเสมอ**
+`/contribution-margin` (พื้นฐาน: ต่างจาก Gross Margin ยังไง) ↔ `/contribution-margin-layers` (ลึกขึ้น: ซอยกี่ชั้น)
+สองหน้านี้ใช้คำว่า "contribution margin" เหมือนกัน ถ้าไม่ลิงก์หากันจะแย่งอันดับกันเอง (keyword cannibalisation)
+การลิงก์ไป-กลับบอก Google ว่านี่คือชุดเดียวกัน ไม่ใช่หน้าซ้ำ
 
 **ทุกบทความมี JSON-LD ชนิด `BlogPosting`** ระบุผู้เขียนเป็นกรรมการผู้จัดการ
 ถ้าเพิ่มบทความใหม่ต้องมีด้วย ไม่งั้นเสียโอกาสแสดงผลแบบ rich result
