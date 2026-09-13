@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1120px; height: 700px; }
+  body {
+    background: #F6F5F3;
+    font-family: 'Noto Sans Thai', 'Liberation Sans', sans-serif;
+    color: #1F2421; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { padding: 18px 26px 0; }
+
+  /* ---- header ---- */
+  .top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .eyebrow { font-size: 12px; letter-spacing: .10em; color: #8C877F; text-transform: uppercase; }
+  .h1 { font-size: 26px; font-weight: 600; margin-top: 5px; letter-spacing: -.01em; }
+  .chips { display: flex; gap: 10px; align-items: center; }
+  .seg { display: flex; background: #FFF; border: 1px solid #E8E5E1; border-radius: 9px; padding: 3px; }
+  .seg span { font-size: 13px; padding: 5px 13px; border-radius: 7px; color: #7A7570; }
+  .seg span.on { background: #2F4F41; color: #FFF; }
+  .chip { background: #FFF; border: 1px solid #E8E5E1; border-radius: 9px; padding: 8px 14px; font-size: 13px; color: #514D48; display: flex; gap: 9px; align-items: center; }
+  .av { width: 21px; height: 21px; border-radius: 50%; background: #2F4F41; color: #FFF; font-size: 11px; display: flex; align-items: center; justify-content: center; }
+
+  .rule { height: 1px; background: #E8E5E1; margin: 14px 0 0; }
+
+  /* ---- kpi ---- */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 13px; }
+  .card { background: #FFF; border: 1px solid #E8E5E1; border-radius: 12px; padding: 15px 19px; }
+  .k-label { font-size: 13px; color: #8C877F; display: flex; align-items: center; gap: 7px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+  .k-val { font-size: 31px; font-weight: 600; margin-top: 9px; letter-spacing: -.02em; }
+  .k-val small { font-size: 15px; font-weight: 400; color: #7A7570; margin-left: 3px; }
+  .k-foot { font-size: 12px; color: #8C877F; margin-top: 9px; }
+  .pillx { display: inline-block; background: #EDF1EE; color: #2F4F41; border-radius: 20px; padding: 3px 10px; font-size: 12px; }
+  .pillw { background: #F6EFE2; color: #8A6A21; }
+
+  /* ---- body grid ---- */
+  .grid { display: grid; grid-template-columns: 1fr 376px; gap: 16px; margin-top: 13px; }
+  .p-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .p-title { font-size: 15px; font-weight: 600; }
+  .p-note { font-size: 12px; color: #A29C94; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  th { font-size: 11.5px; font-weight: 500; color: #A29C94; text-transform: uppercase; letter-spacing: .06em;
+       text-align: left; padding: 0 0 9px; border-bottom: 1px solid #EFECE8; }
+  td { font-size: 13.5px; padding: 7px 0; border-bottom: 1px solid #F2EFEB; vertical-align: middle; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .t-time { color: #7A7570; font-variant-numeric: tabular-nums; }
+  .t-step { font-weight: 500; }
+  .st { font-size: 12px; border-radius: 20px; padding: 3px 11px; display: inline-block; }
+  .ok { background: #EDF1EE; color: #2F4F41; }
+  .wait { background: #F6EFE2; color: #8A6A21; }
+
+  /* ---- bars ---- */
+  .barrow { display: grid; grid-template-columns: 74px 1fr 62px; align-items: center; gap: 12px; margin-top: 16px; }
+  .barrow .lab { font-size: 13px; color: #514D48; }
+  .track { height: 26px; background: #F2EFEB; border-radius: 4px; overflow: hidden; }
+  .fill { height: 100%; border-radius: 4px; }
+  .barrow .v { font-size: 13.5px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .axis { font-size: 11px; color: #A29C94; margin-top: 10px; display: flex; justify-content: space-between; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .mini { border: 1px solid #EFECE8; border-radius: 10px; padding: 13px 15px; }
+  .mini .m-l { font-size: 12px; color: #8C877F; }
+  .mini .m-v { font-size: 22px; font-weight: 600; margin-top: 5px; }
+  .mini .m-v small { font-size: 13px; font-weight: 400; color: #7A7570; margin-left: 2px; }
+</style></head>
+<body><div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="eyebrow">งานเช็คอัตโนมัติ · ข้อมูลตัวอย่าง</div>
+      <div class="h1">เช็คผ่านรับ &amp; เช็คผ่านจ่าย</div>
+    </div>
+    <div class="chips">
+      <div class="seg"><span class="on">ไทย</span><span>EN</span></div>
+      <div class="chip"><span class="av">B</span>bot · daily run</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="kpis">
+    <div class="card">
+      <div class="k-label"><span class="dot" style="background:#2F4F41"></span>เช็คที่ประมวลผล</div>
+      <div class="k-val">168 <small>ใบ</small></div>
+      <div class="k-foot"><span class="pillx">ครบทุกใบ</span></div>
+    </div>
+    <div class="card">
+      <div class="k-label"><span class="dot" style="background:#C9A227"></span>เวลาที่ใช้ต่อรอบ</div>
+      <div class="k-val">30 <small>นาที</small></div>
+      <div class="k-foot">เดิม 1 วันทำงาน (480 นาที)</div>
+    </div>
+    <div class="card">
+      <div class="k-label"><span class="dot" style="background:#C0705F"></span>รอคนตรวจซ้ำ</div>
+      <div class="k-val">3 <small>ใบ</small></div>
+      <div class="k-foot">จำนวนเงิน / ผู้สั่งจ่ายไม่ตรง</div>
+    </div>
+    <div class="card">
+      <div class="k-label"><span class="dot" style="background:#2F4F41"></span>ข้อผิดพลาดจากการคีย์</div>
+      <div class="k-val">0</div>
+      <div class="k-foot">มี log ย้อนกลับได้ทุกใบ</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="p-head">
+        <div class="p-title">บันทึกการทำงานของบอท (run log)</div>
+        <div class="p-note">รอบวันที่ 12 · เริ่ม 06:00 น.</div>
+      </div>
+      <table>
+        <tr><th style="width:78px">เวลา</th><th>ขั้นตอน</th><th class="num" style="width:110px">รายการ</th><th class="num" style="width:110px">สถานะ</th></tr>
+        <tr><td class="t-time">06:00</td><td class="t-step">ดึงไฟล์รายการเช็คจากอีเมลและ statement</td><td class="num">168 ใบ</td><td class="num"><span class="st ok">สำเร็จ</span></td></tr>
+        <tr><td class="t-time">06:04</td><td class="t-step">แยกเช็คผ่านรับ / เช็คผ่านจ่าย</td><td class="num">96 / 72</td><td class="num"><span class="st ok">สำเร็จ</span></td></tr>
+        <tr><td class="t-time">06:09</td><td class="t-step">จับคู่กับใบวางบิลและใบสำคัญจ่าย</td><td class="num">165 ใบ</td><td class="num"><span class="st ok">สำเร็จ</span></td></tr>
+        <tr><td class="t-time">06:16</td><td class="t-step">บันทึกรายการลงระบบบัญชี</td><td class="num">165 ใบ</td><td class="num"><span class="st ok">สำเร็จ</span></td></tr>
+        <tr><td class="t-time">06:22</td><td class="t-step">กระทบยอดบัญชีธนาคาร</td><td class="num">4 บัญชี</td><td class="num"><span class="st ok">สำเร็จ</span></td></tr>
+        <tr><td class="t-time">06:27</td><td class="t-step">สรุปรายงานและส่งอีเมลผู้อนุมัติ</td><td class="num">1 ฉบับ</td><td class="num"><span class="st ok">สำเร็จ</span></td></tr>
+        <tr><td class="t-time">06:30</td><td class="t-step">คัดรายการที่ต้องให้คนตัดสินใจ</td><td class="num">3 ใบ</td><td class="num"><span class="st wait">รอตรวจ</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="p-head">
+        <div class="p-title">เวลาที่ใช้ต่อรอบ</div>
+        <div class="p-note">นาที</div>
+      </div>
+      <div class="barrow">
+        <div class="lab">ก่อนใช้บอท</div>
+        <div class="track"><div class="fill" style="width:100%;background:#C0705F"></div></div>
+        <div class="v">480</div>
+      </div>
+      <div class="barrow">
+        <div class="lab">หลังใช้บอท</div>
+        <div class="track"><div class="fill" style="width:6.25%;background:#2F4F41"></div></div>
+        <div class="v">30</div>
+      </div>
+      <div class="axis"><span>0</span><span>240</span><span>480</span></div>
+
+      <div style="height:1px;background:#EFECE8;margin:20px 0 0"></div>
+
+      <div class="split">
+        <div class="mini">
+          <div class="m-l">เช็คผ่านรับ</div>
+          <div class="m-v">96 <small>ใบ</small></div>
+        </div>
+        <div class="mini">
+          <div class="m-l">เช็คผ่านจ่าย</div>
+          <div class="m-v">72 <small>ใบ</small></div>
+        </div>
+        <div class="mini">
+          <div class="m-l">เวลาที่ลดลง</div>
+          <div class="m-v">94 <small>%</small></div>
+        </div>
+        <div class="mini">
+          <div class="m-l">คนที่ต้องนั่งทำ</div>
+          <div class="m-v">0 <small>คน</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:13px">
+    <div class="card">
+      <div class="p-head">
+        <div class="p-title">รายการที่บอทส่งต่อให้คนตัดสินใจ</div>
+        <div class="p-note">3 ใบ · เฉลี่ย 1.8% ของรายการทั้งหมด</div>
+      </div>
+      <table>
+        <tr><th style="width:120px">ประเภท</th><th>เหตุผลที่บอทหยุด</th><th class="num" style="width:130px">มูลค่า (บาท)</th><th class="num" style="width:110px">ผู้รับผิดชอบ</th></tr>
+        <tr><td>เช็คผ่านจ่าย</td><td class="t-step">จำนวนเงินไม่ตรงกับใบสำคัญจ่าย</td><td class="num">184,500</td><td class="num">การเงิน</td></tr>
+        <tr><td>เช็คผ่านรับ</td><td class="t-step">ไม่พบใบวางบิลที่จับคู่ได้</td><td class="num">62,300</td><td class="num">บัญชีลูกหนี้</td></tr>
+        <tr style="border-bottom:none"><td>เช็คผ่านจ่าย</td><td class="t-step">ผู้สั่งจ่ายต่างจากที่ระบุในระบบ</td><td class="num">45,000</td><td class="num">การเงิน</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="p-head">
+        <div class="p-title">สะสมเดือนนี้</div>
+        <div class="p-note">12 รอบ</div>
+      </div>
+      <div class="split" style="margin-top:13px">
+        <div class="mini">
+          <div class="m-l">เช็คที่บอททำแทน</div>
+          <div class="m-v">1,980 <small>ใบ</small></div>
+        </div>
+        <div class="mini">
+          <div class="m-l">เวลาที่คืนให้ทีม</div>
+          <div class="m-v">90 <small>ชม.</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div></body></html>

@@ -41,6 +41,10 @@ description: แก้ไขและต่อเติมเว็บไซต�
    im.thumbnail((1400,1400))
    im.save('assets/img/case-xxx.webp','WEBP',quality=82,method=6)"
    ```
+   **ถ้าไม่มีรูปจริง** (เช่น ลูกค้าให้ภาพหน้าจอระบบจริงไม่ได้) ให้ทำ mock dashboard เอง
+   ต้นแบบอยู่ที่ `tools/mock/case-rpa-cheque.html` — copy มาแก้ แล้ว render ตามกติกาใน CLAUDE.md §5
+   หัวข้อ "รูป mock dashboard" (1120×700 @2.5x → ย่อ 1400×875 · ต้องมีคำว่า "ข้อมูลตัวอย่าง" ในรูป)
+
 2. copy `<article class="card case">...</article>` ก้อนสุดท้ายใน `case-studies.html` มาวางต่อ
 3. แก้ 6 จุดในก้อนที่ copy มา:
    - `.pill` — ประเภทธุรกิจ · บริการที่ใช้ (TH + EN)
